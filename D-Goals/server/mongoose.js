@@ -1,8 +1,12 @@
 const mongoose = require ('mongoose');
+const opciones = {useNewUrlParser:true,
+                  user:"user",
+                  pass:"usuario1",
+                  useUnifiedTopology: true};
 
-mongoose.Promise = global.Promise;
-mongoose.connect ('mongoose://localhost:27017/Usuarios',{useNewUrlParser:true}).then(()=>{
-  console.log("Coneccion a la base de dato correcta");
+mongoose.Promise = global.Promise; 
+mongoose.connect ('mongodb://10.6.130.209:27017/app_user',opciones).then(()=>{
+  console.log("Conexion a la base de dato correcta");
 
 }).catch((e)=>{
     console.log("Error al conectar con la base de datos");
@@ -12,6 +16,6 @@ mongoose.connect ('mongoose://localhost:27017/Usuarios',{useNewUrlParser:true}).
 mongoose.set('useCreateIndex',true);
 mongoose.set('useFindAndModify',false);
 
-mondule.exports = {
+module.exports = {
   mongoose
 };
