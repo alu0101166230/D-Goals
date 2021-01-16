@@ -1,4 +1,6 @@
+import { ArrayType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(
+    public name : String,
+    public password : String 
+  ){}
   ngOnInit(): void {
   }
-
 }
