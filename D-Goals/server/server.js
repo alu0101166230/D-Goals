@@ -2,28 +2,29 @@ const express = require ('express');
 const app = express();
 
 const {mongoose} = require('./mongoose');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const {Usuario} = require('./models/index');
 
-// //app.use(bodyParser.json());
-// app.use(function (req, res, next) {
+app.use(bodyParser.json());
 
-//   // Website you wish to allow to connect
-//   res.setHeader('Access-Control-Allow-Origin', '*');
+app.use(function (req, res, next) {
 
-//   // Request methods you wish to allow
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
-//   // Request headers you wish to allow
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-//   // Set to true if you need the website to include cookies in the requests sent
-//   // to the API (e.g. in case you use sessions)
-//   res.setHeader('Access-Control-Allow-Credentials', true);
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-//   // Pass to next layer of middleware
-//   next();
-// });
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
 
 // Login de la aplicacion
 app.post("/login",(req,res)=>{
@@ -33,7 +34,7 @@ app.post("/login",(req,res)=>{
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user,password:pass}).then((lists)=>{
     res.send(lists);
-  console.log("Estoy aqui")
+  console.log("Todo funciona bien");
   }).catch((e)=>{
     res.send(e);
   });
@@ -42,9 +43,7 @@ app.post("/login",(req,res)=>{
 
 app.post("/singin",(req,res)=>{
   // Creamos el objeto de perfil nuevo, conforme a la informacion proporcionada por el formulario html 
-  console.log(req.body);
   let newUser = new Usuario({
-    
     nombre : req.body.user,
     password : req.body.password,
     correo : req.body.email,
