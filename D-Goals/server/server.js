@@ -2,11 +2,28 @@ const express = require ('express');
 const app = express();
 
 const {mongoose} = require('./mongoose');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const {Usuario} = require('./models/index');
 
-app.use(bodyParser.json());
+// //app.use(bodyParser.json());
+// app.use(function (req, res, next) {
 
+//   // Website you wish to allow to connect
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+
+//   // Request methods you wish to allow
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+//   // Request headers you wish to allow
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+//   // Set to true if you need the website to include cookies in the requests sent
+//   // to the API (e.g. in case you use sessions)
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+
+//   // Pass to next layer of middleware
+//   next();
+// });
 
 // Login de la aplicacion
 app.post("/login",(req,res)=>{
@@ -16,6 +33,7 @@ app.post("/login",(req,res)=>{
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user,password:pass}).then((lists)=>{
     res.send(lists);
+  console.log("Estoy aqui")
   }).catch((e)=>{
     res.send(e);
   });
@@ -24,7 +42,9 @@ app.post("/login",(req,res)=>{
 
 app.post("/singin",(req,res)=>{
   // Creamos el objeto de perfil nuevo, conforme a la informacion proporcionada por el formulario html 
+  console.log(req.body);
   let newUser = new Usuario({
+    
     nombre : req.body.user,
     password : req.body.password,
     correo : req.body.email,
@@ -60,16 +80,7 @@ app.post("/singin",(req,res)=>{
 //     res.send(tasks);
 //   })
 // });
-
-// app.get('/list/:listId/tasks/:taskId',(req,res)=>{
-//   Task.findOne({
-//     _id:req.params.taskId,
-//     _listId: req.params.lostId
-//   }).then((task)=>{
-//     res.send(task);
-//   })
-// });
-
+   
 // app.post('/lists/:listId/tasks',(req,res)=>{
 //   let newTask = new Task({
 //     title: req.body.title,
@@ -101,7 +112,7 @@ app.post("/singin",(req,res)=>{
 // });
 
 
-app.listen(2523,'0.0.0.0',()=>{
-  console.log("El servidor esta corriendo en el puerto 2523");
+app.listen('8081','0.0.0.0',()=>{
+  console.log("El servidor esta corriendo en el puerto 8081");
 })
 

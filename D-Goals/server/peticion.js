@@ -2,14 +2,15 @@
 const https = require('http')
 
 const data = JSON.stringify({
-  user: 'CArol',
-  password: '1234567123'
+  user: 'Carol',
+  password: '1234567123',
+  email: "estoesunemail@gg.com"
 })
 
 const options = {
   hostname: 'localhost',
-  port: 2523,
-  path: '/login',
+  port: 8081,
+  path: '/singin',
   method: 'POST', 
   headers: {
     'Content-Type': 'application/json',
