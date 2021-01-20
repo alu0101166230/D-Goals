@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { LoginComponent } from '../login/login.component';
+import { User } from '../__models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -17,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  model = new LoginComponent("Carol","1234567123");
+  model = new User("Carol","1234567123",'','');
 
   submitted = false;
 
