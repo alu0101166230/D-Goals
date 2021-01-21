@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> servicios
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +25,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+<<<<<<< HEAD
     HttpClientModule,
     HttpInterceptor,
     RouterModule.forRoot([
@@ -29,6 +35,9 @@ import { LoginFormComponent } from './login-form/login-form.component';
         canActivate: ['canActivateTeam']
       }
     ]),
+=======
+    HttpClientModule
+>>>>>>> servicios
   ],
   bootstrap: [AppComponent],
   providers: [
