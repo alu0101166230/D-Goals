@@ -3,41 +3,24 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { HttpInterceptor } from from '@angular/common/http';
+import { HttpInterceptor } from  '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { User } from './__models/user';
 import { LoginFormComponent } from './login-form/login-form.component';
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> servicios
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    User,
     LoginFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-<<<<<<< HEAD
-    HttpClientModule,
-    HttpInterceptor,
-    RouterModule.forRoot([
-      {
-        path: 'team/:id',
-        component: TeamComponent,
-        canActivate: ['canActivateTeam']
-      }
-    ]),
-=======
     HttpClientModule
->>>>>>> servicios
   ],
   bootstrap: [AppComponent],
   providers: [
