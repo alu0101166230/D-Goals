@@ -1,8 +1,8 @@
 export class User {
-    username: string;
-    password: string;
-    email: string;
-    token?: string;
+    public username: string;
+    public password: string;
+    public email: string;
+    public token?: string;
     constructor(user:string,pass:string,mail:string,token:string){
         this.username=user;
         this.password=pass;
