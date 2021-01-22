@@ -41,7 +41,7 @@ export class AuthService {
     return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
         console.log(data);
         let datos = data[0];
-        let resultado = new User(datos["nombre"],datos["password"],datos["email"],datos["_id"]);
+        let resultado = new User(datos["nombre"],datos["password"],datos["correo"],datos["_id"]);
         localStorage.setItem('currentUser',JSON.stringify(resultado));
         this.currentUserSubject.next(resultado);
         return resultado;
