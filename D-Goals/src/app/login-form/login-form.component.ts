@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   model = new User("Carol","1234567123",'','');
-  // autenticacion = new AuthService();
+  autenticacion = new AuthService(this.http);
   submitted = false;
 
   onSubmit() {
@@ -28,7 +28,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   hacerPeticion(){
-    // AuthService.login(this.model.name,this.model.password);
+    let resultado = this.autenticacion.login(this.model.username,this.model.password);
+    console.log(resultado);
     // let usuario=this.model.name;
     // let pass =this.model.password;
     // let data =JSON.stringify({
