@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { User } from '../__models/user';
+import {AuthService} from '../__services/auth.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -17,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   model = new User("Carol","1234567123",'','');
-
+  // autenticacion = new AuthService();
   submitted = false;
 
   onSubmit() {
@@ -27,23 +28,24 @@ export class LoginFormComponent implements OnInit {
   }
 
   hacerPeticion(){
-    let usuario=this.model.name;
-    let pass =this.model.password;
-    let data =JSON.stringify({
-      user: usuario,
-      password: pass})
-    console.log(data)
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json','Content-Length': String(data.length) })
+    // AuthService.login(this.model.name,this.model.password);
+    // let usuario=this.model.name;
+    // let pass =this.model.password;
+    // let data =JSON.stringify({
+    //   user: usuario,
+    //   password: pass})
+    // console.log(data)
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 'Content-Type': 'application/json','Content-Length': String(data.length) })
   }
   
-  this.http.post('http://10.6.130.59:8081/login',data,httpOptions)
-    .subscribe(data => {
-          console.log(data);
-    }, error => {
-        console.log(JSON.stringify(error.json()));
-    })
+  // this.http.post('http://10.6.130.59:8081/login',data,httpOptions)
+  //   .subscribe(data => {
+  //         console.log(data);
+  //   }, error => {
+  //       console.log(JSON.stringify(error.json()));
+  //   })
   }
 
-}
+
 

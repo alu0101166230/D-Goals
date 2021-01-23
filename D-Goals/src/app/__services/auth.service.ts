@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '@environments/environment';
-import { User } from '@app/__models';
+import { environment } from '../../environments/environment';
+import { User } from '../__models/user';
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,10 +13,13 @@ export class AuthService {
   // creamos variables globales de la clase
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  model = new User('','','','');
+
   
   // En el constructor de la clase creamos la cookie almacenada localmente
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    localStorage.setItem('currentUser',this.model.get_json());
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(this.model.get_json()));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -39,6 +42,6 @@ export class AuthService {
   // Elimina la cuenta del usuario <aka cookie>
   logout(){
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    // this.currentUserSubject.next();
   }
 }

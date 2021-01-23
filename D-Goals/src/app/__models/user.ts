@@ -9,7 +9,13 @@ export class User {
         this.email=mail;
         this.token=token;
     }
-    public get name(): User{
-        return this.name;
+    public get_json(){
+        return JSON.stringify({
+            username: this.username,
+            password:this.password,
+            email:this.email,
+            token:this.token
+        });
     }
+    
 }
