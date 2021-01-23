@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../__models/user';
@@ -33,22 +33,23 @@ export class AuthService {
     
     let data =JSON.stringify({
       user: username,
-      password: password})  
+      password: password});
+
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json','Content-Length': String(data.length) })}
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
     return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
         console.log(data);
+        let resultado = User.JsonToObject(data);
+        localStorage.setItem('currentUser',JSON.stringify(resultado));
+        this.currentUserSubject.next(resultado);
+        return resultado;
+    }, error => {
+        console.log(JSON.stringify(error.json()));
+    });
 
-    })
 
-
-      // .pipe(map(user =>{
-      //   console.log("el user es : "+user);
-      //   localStorage.setItem('currentUser',JSON.stringify(user));
-      //   this.currentUserSubject.next(user);
-      //   return user;
-      // }));
+      
   }
 
   // Elimina la cuenta del usuario <aka cookie>
