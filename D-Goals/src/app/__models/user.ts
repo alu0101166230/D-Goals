@@ -17,11 +17,11 @@ export class User {
             token:this.token
         });
     }
+    
+    // public static jsonToObject( data:JSON){
 
-    public static jsonToObject( data:JSON){
-
-        let variable = new User(data[nombre],data[password],data[email],data[_id]);
-        return variable;
-    }
+    //     let variable = new User(data[nombre],data[password],data[email],data[_id]);
+    //     return variable;
+    // }
     
 }
