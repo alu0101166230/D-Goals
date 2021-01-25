@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
     this.hacerPeticion()
   }
   hacerPeticion(){
-    // let resultado = this.autenticacion.singin(this.model.username,this.model.password,this.model.email);
-    // console.log(resultado);
+    //let resultado = this.autenticacion.singin(this.model.username,this.model.password,this.model.email);
+    console.log(this.model);
   }
 }
