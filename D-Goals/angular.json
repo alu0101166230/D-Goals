@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "D-Goals"
+  "defaultProject": "D-Goals",
+  "cli": {
+    "analytics": "384b4919-767a-45ae-b5b9-b4b1a4711bb1"
+  }
 }

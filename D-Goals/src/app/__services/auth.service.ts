@@ -48,9 +48,6 @@ export class AuthService {
     }, error => {
         console.log(JSON.stringify(error.json()));
     });
-
-
-      
   }
 
   // Elimina la cuenta del usuario <aka cookie>
