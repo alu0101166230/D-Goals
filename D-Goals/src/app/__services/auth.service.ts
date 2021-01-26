@@ -27,6 +27,8 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  
+
   // Metodo login que pide un username y un password
   login(username:string,password:string){
     // Retornamos el resultado del POST, y preparamos para escuchar en la ruta /login

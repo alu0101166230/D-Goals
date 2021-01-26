@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { User } from '../__models/user';
 import {AuthService} from '../__services/auth.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -11,9 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor( private http: HttpClient,private router: Router ) { }
 
   ngOnInit(): void {}
 
@@ -26,7 +24,6 @@ export class LoginFormComponent implements OnInit {
     console.log(this.model)
     this.hacerPeticion()
   }
-
   hacerPeticion(){
     let resultado = this.autenticacion.login(this.model.username,this.model.password);
     console.log(resultado);
