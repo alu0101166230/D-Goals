@@ -34,3 +34,4 @@ const ListSchema = new mongoose.Schema({
 })
 const Usuario = mongoose.model('usuarios',ListSchema);
 module.exports = {Usuario}
+

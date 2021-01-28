@@ -27,7 +27,23 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  
+  singin(username:string,password:string,correo:string){
+    // Retornamos el resultado del POST, y preparamos para escuchar en la ruta /login
+    
+    let data =JSON.stringify({
+      user: username,
+      password: password,
+      email:correo});
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
+
+    return this.http.post<any>(`http://10.6.130.59:8081/singin`,data,httpOptions).subscribe(data =>{
+        console.log(data);
+    }, error => {
+        console.log(JSON.stringify(error.json()));
+    });
+  }
 
   // Metodo login que pide un username y un password
   login(username:string,password:string){
