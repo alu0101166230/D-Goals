@@ -33,14 +33,14 @@ const opciones = {
   useNewUrlParser:true
 };
 
-var conn_u = mongoose.createConnection('mongodb://10.6.129.31:8082/app_user',opciones).then(()=>{
-  console.log("Conexion a la base de datos correcta");
-}).catch((e)=>{
-  console.log("Error al conectar con la base de datos");
-  console.log(e);
-});
-
-var conn_h = mongoose.createConnection('mongodb://10.6.129.31:8082/app_habit',opciones).then(()=>{
+//var conn_u = mongoose.createConnection('mongodb://10.6.129.31:8082/app_user',opciones).then(()=>{
+//  console.log("Conexion a la base de datos correcta");
+//}).catch((e)=>{
+//  console.log("Error al conectar con la base de datos");
+//  console.log(e);
+//});
+mongoose.Promise=global.Promise
+mongoose.connect('mongodb://10.6.129.31:8082/app_habit',opciones).then(()=>{
   console.log("Conexion a la base de datos correcta");
 }).catch((e)=>{
   console.log("Error al conectar con la base de datos");
@@ -67,8 +67,8 @@ const Schema_habito = new Schema({
   descripcion:{type:String}
 })
 
-const Usuario = db.model('usuarios',Schema_usuario);
-const Habito = db.model('habito',Schema_habito);
+//const Usuario = db.model('usuarios',Schema_usuario);
+const Habito = mongoose.model('habit',Schema_habito);
 
 ///////////////////////////////////////////////////////////////////////////
 app.post("/login",(req,res)=>{
@@ -113,6 +113,7 @@ app.post("/add_habit",(req,res)=>{
 app.post("/get_habit",(req,res)=>{
   Habito.find().then((lists)=>{
     res.send(lists);
+    console.log(lists);
   }).catch((e)=>{
     res.send(e);
   });
