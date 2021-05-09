@@ -2,9 +2,8 @@
 const https = require('http')
 
 const data = JSON.stringify({
-//  user: 'Carol',
-//  password: '1234567123',
-//  email: "estoesunemail@gg.com"
+//  name: 'correr',
+//  description: "correr es una actividad sana que nos permite mejorar el metabolismo"
 })
 
 const options = {

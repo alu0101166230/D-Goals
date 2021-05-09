@@ -32,20 +32,21 @@ const opciones = {
   useUnifiedTopology: true,
   useNewUrlParser:true
 };
-
-//var conn_u = mongoose.createConnection('mongodb://10.6.129.31:8082/app_user',opciones).then(()=>{
-//  console.log("Conexion a la base de datos correcta");
-//}).catch((e)=>{
-//  console.log("Error al conectar con la base de datos");
-//  console.log(e);
-//});
 mongoose.Promise=global.Promise
-mongoose.connect('mongodb://10.6.129.31:8082/app_habit',opciones).then(()=>{
-  console.log("Conexion a la base de datos correcta");
+
+var conn_u = mongoose.connect('mongodb://10.6.129.31:8082/app_user',opciones).then(()=>{
+ console.log("Conexion a la base de datos correcta");
 }).catch((e)=>{
-  console.log("Error al conectar con la base de datos");
-  console.log(e);
+ console.log("Error al conectar con la base de datos");
+ console.log(e);
 });
+
+// mongoose.connect('mongodb://10.6.129.31:8082/app_habit',opciones).then(()=>{
+//   console.log("Conexion a la base de datos correcta");
+// }).catch((e)=>{
+//   console.log("Error al conectar con la base de datos");
+//   console.log(e);
+// });
 
 mongoose.set('useCreateIndex',true);
 mongoose.set('useFindAndModify',false);
@@ -67,8 +68,8 @@ const Schema_habito = new Schema({
   descripcion:{type:String}
 })
 
-//const Usuario = db.model('usuarios',Schema_usuario);
-const Habito = mongoose.model('habit',Schema_habito);
+const Usuario = mongoose.model('usuarios',Schema_usuario);
+const Habito = mongoose.model('habitos',Schema_habito);
 
 ///////////////////////////////////////////////////////////////////////////
 app.post("/login",(req,res)=>{
@@ -101,13 +102,17 @@ app.post("/singin",(req,res)=>{
 ///////////////////////////////////////////////////////////////////////////
 
 app.post("/add_habit",(req,res)=>{
+  console.log("entro: "+req.body.name);
+  console.log(req.body.description);
   let newHabit = new Habito({
     nombre : req.body.name,
     descripcion: req.body.description
   });
+  
   newHabit.save().then((listDoc)=>{
     res.send(listDoc);
   })
+ 
 })
 
 app.post("/get_habit",(req,res)=>{
