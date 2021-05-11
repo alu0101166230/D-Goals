@@ -4,6 +4,7 @@ const app = express();
 const {mongoose} = require('./mongoose');
 const bodyParser = require('body-parser');
 const {Usuario} = require('./models/index');
+const {Habito} = require ('./models/index')
 
 app.use(bodyParser.json());
 
@@ -109,6 +110,30 @@ app.post("/singin",(req,res)=>{
 //     res.send(removedTaskDoc);
 //   })
 // });
+///////////////////////// Habitos /////////////////
+
+app.post("/add_habit",(req,res)=>{
+  console.log("entro: "+req.body.name);
+  console.log(req.body.description);
+  let newHabit = new Habito({
+    nombre : req.body.name,
+    descripcion: req.body.description
+  });
+  
+  newHabit.save().then((listDoc)=>{
+    res.send(listDoc);
+  })
+ 
+})
+
+app.post("/get_habit",(req,res)=>{
+  Habito.find().then((lists)=>{
+    res.send(lists);
+    console.log(lists);
+  }).catch((e)=>{
+    res.send(e);
+  });
+})
 
 
 app.listen('8081','0.0.0.0',()=>{
