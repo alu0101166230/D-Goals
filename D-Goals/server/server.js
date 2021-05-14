@@ -1,12 +1,15 @@
 const express = require ('express');
+const bodyParser = require('body-parser');
 const app = express();
+app.use(bodyParser.json());
+
 
 const {mongoose} = require('./mongoose');
-const bodyParser = require('body-parser');
-const {Usuario} = require('./models/index');
-const {Habito} = require ('./models/index')
 
-app.use(bodyParser.json());
+const {Usuario} = require('./models/index');
+const {Habito} = require ('./models/index');
+
+
 
 app.use(function (req, res, next) {
 
@@ -35,7 +38,6 @@ app.post("/login",(req,res)=>{
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user,password:pass}).then((lists)=>{
     res.send(lists);
-  console.log("Todo funciona bien");
   }).catch((e)=>{
     res.send(e);
   });
