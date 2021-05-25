@@ -6,47 +6,37 @@
 //http://nodejs.dev/learn/making-http-requests-with-nodejs
 const http = require('http')
 /// Funcion que realiza una peticion POST a una ruta  y con unos datos dados
-function POST_REQ(path_,data_){
-  var body = [];
-  new Promise (function (resolve, reject){
 
-    const data = JSON.stringify(data_)
+async function GET_REQ(path_){
+  return new Promise (()=>{
     const options = {
       hostname: 'localhost',
       port: 8081,
       path: path_,
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': data.length
-      }
+      method: 'GET'
     }
-    var req = http.request(options, res => {
-      console.log(`statusCode: ${res.statusCode}`)
-      
-      res.on('data', function(chunk) {
-        body.push(chunk);
-      });
-      console.log("-------------------");
-      console.log(body);
-      res.on('end', function() {
-        try {
-            body = JSON.parse(Buffer.concat(body).toString());
-        } catch(e) {
-            reject(e);
-        }
-        resolve(body);
-      });
-      
+    
+    const req = http.request(options, res => {
+      // console.log(`statusCode: ${res.statusCode}`)
+      var data = ""
+      res.on('data', d => {
+        data += d;
+      })
+      res.on('end', () => {
+        console.log(req.data); // 'Buy the milk'
+        
+      })
     })
-    req.write(data)
-    req.end()
 
-    //// fin de promesa
-  }).then(()=>{
-    console.log("------------------------------------------");
-    console.log(body)
-  })
+    var  peticion = req;
+    req.on('error', error => {
+      // console.error(error)
+    })
+    // peticion= "Asdf";
+    req.end()
+    return peticion;
+  });
 }
 
-module.exports=POST_REQ;
+
+module.exports=GET_REQ;

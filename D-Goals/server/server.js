@@ -58,6 +58,7 @@ app.post("/singin",(req,res)=>{
   })
 })
 
+
 // app.patch("/lists/:id",(req,res)=>{
 //   List.findOneAndUpdate({_id: req.params.id},{
 //     $set: req.body
@@ -113,26 +114,40 @@ app.post("/singin",(req,res)=>{
 //   })
 // });
 ///////////////////////// Habitos /////////////////
+app.delete("/habit",(req,res)=>{
+  Habito.findOneAndRemove({
+    nombre: req.body.name
+  }).then((removed)=>{
+    res.send(removed);
+  })
 
-app.post("/add_habit",(req,res)=>{
-  console.log("entro: "+req.body.name);
-  console.log(req.body.description);
+})
+app.post("/habit",(req,res)=>{
   let newHabit = new Habito({
     nombre : req.body.name,
     descripcion: req.body.description
   });
   
   newHabit.save().then((listDoc)=>{
+
     res.send(listDoc);
   })
  
 })
 
-app.post("/get_habit",(req,res)=>{
+
+// Peticion GET para obtener los habitos 
+
+app.get("/habit",(req,res)=>{
   Habito.find().then((lists)=>{
+    console.log("entro")
+    res.statusCode ='200';
+    res.statusMessage = 'Solicitod realizada con exito';
     res.send(lists);
+    
     console.log(lists);
   }).catch((e)=>{
+    res.statusCode ='500';
     res.send(e);
   });
 })
