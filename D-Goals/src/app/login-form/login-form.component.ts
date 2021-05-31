@@ -17,24 +17,19 @@ export class LoginFormComponent implements OnInit {
 
   model = new User("Carol","1234567123",'','');
   autenticacion = new AuthService(this.http);
-  submitted = false;
+  submitted = true;
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.model)
+    this.autenticacion.login(this.model.username,this.model.password);
     this.hacerPeticion()
   }
-  hacerPeticion(){
-    let resultado = this.autenticacion.login(this.model.username,this.model.password);
-    console.log(resultado);
-    // let usuario=this.model.name;
-    // let pass =this.model.password;
-    // let data =JSON.stringify({
-    //   user: usuario,
-    //   password: pass})
-    // console.log(data)
-    // const httpOptions = {
-    //   headers: new HttpHeaders({ 'Content-Type': 'application/json','Content-Length': String(data.length) })
+
+  hacerPeticion(){    
+    
+    // setTimeout(this.autenticacion.current_user(),100)
+    console.log(this.autenticacion.currentUserValue);
+    // console.log(this.autenticacion.current_user())
   }
   
   // this.http.post('http://10.6.130.59:8081/login',data,httpOptions)
@@ -43,7 +38,7 @@ export class LoginFormComponent implements OnInit {
   //   }, error => {
   //       console.log(JSON.stringify(error.json()));
   //   })
-  }
+}
 
 
 
