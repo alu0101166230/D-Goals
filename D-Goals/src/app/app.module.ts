@@ -11,12 +11,18 @@ import { AppComponent } from './app.component';
 // import { User } from './__models/user';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SigninComponent } from './signin/signin.component';
+import { HomeComponent } from './home/home.component';
+import { NewUserComponent } from './new-user/new-user.component';
+import { NewHabitComponent } from './new-habit/new-habit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    SigninComponent
+    SigninComponent,
+    HomeComponent,
+    NewUserComponent,
+    NewHabitComponent
   ],
   imports: [
     BrowserModule,
