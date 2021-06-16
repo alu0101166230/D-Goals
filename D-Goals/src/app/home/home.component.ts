@@ -17,13 +17,14 @@ export class HomeComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    var perfil = JSON.parse(window.localStorage.getItem("currentUser"));
-    let username = perfil["username"].toString();
-    let password = perfil["password"].toString();
-    // console.log(username);
-    var resultado = this.getPerfil(username,password);
-    // console.log(perfil);
-    // console.log(this.Perfil);
+    var tmp =  window.localStorage.getItem("currentUser")
+    if(tmp){
+      var perfil = JSON.parse(tmp);
+      let username = perfil["username"].toString();
+      let password = perfil["password"].toString();
+      var resultado = this.getPerfil(username,password);
+    }
+    
   }
 
   getPerfil(username:string,password:string){
@@ -35,8 +36,8 @@ export class HomeComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
     
     return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
-      this.Perfil= data[0];
-      if(this.Perfil["habito"]){
+      this.Perfil= data[0]["habito"];
+      if(this.Perfil){
 
       }
       else{
