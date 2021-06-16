@@ -3,6 +3,9 @@ import { User } from '../__models/user';
 import {AuthService} from '../__services/auth.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
+import { BehaviorSubject, Observable, pipe } from 'rxjs';
+import { skip } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login-form',
@@ -14,36 +17,25 @@ export class LoginFormComponent implements OnInit {
   constructor( private http: HttpClient,private router: Router ) { }
 
   ngOnInit(): void {}
-
+  
+  
   model = new User("Carol","1234567123",'','');
   autenticacion = new AuthService(this.http);
   submitted = false;
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.model)
-    this.hacerPeticion()
+    var username = (<HTMLInputElement>document.getElementById("name")).value;
+    var password = (<HTMLInputElement>document.getElementById("password")).value;
+    this.autenticacion.login(username,password);
+    this.hacerPeticion();
   }
-  hacerPeticion(){
-    let resultado = this.autenticacion.login(this.model.username,this.model.password);
-    console.log(resultado);
-    // let usuario=this.model.name;
-    // let pass =this.model.password;
-    // let data =JSON.stringify({
-    //   user: usuario,
-    //   password: pass})
-    // console.log(data)
-    // const httpOptions = {
-    //   headers: new HttpHeaders({ 'Content-Type': 'application/json','Content-Length': String(data.length) })
+  hacerPeticion(){    
+    var tmp = this.autenticacion.current_user();
+    tmp.pipe(skip(1)).subscribe(   
+       (value)=>{
+         this.router.navigate(["/home"]);
+       }
+    );
   }
-  
-  // this.http.post('http://10.6.130.59:8081/login',data,httpOptions)
-  //   .subscribe(data => {
-  //         console.log(data);
-  //   }, error => {
-  //       console.log(JSON.stringify(error.json()));
-  //   })
-  }
-
-
-
+}
