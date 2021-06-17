@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.css']
+  
 })
 export class NewUserComponent implements OnInit {
 
@@ -17,6 +18,8 @@ export class NewUserComponent implements OnInit {
   ngOnInit(): void {
     const izquierdo = document.getElementById("grid-izquierdo");
     const derecho = document.getElementById("grid-derecho");
+    // document.getElementById("guardar").addEventListener("click",this.guardar_habito,false);
+
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
@@ -27,6 +30,7 @@ export class NewUserComponent implements OnInit {
           var container = document.createElement("div");
           container.classList.add("container");
 
+          document.getElementById("")?.classList.add("")
 
           var div_imagen = document.createElement("div");
           div_imagen.classList.add("text-center");
@@ -68,13 +72,19 @@ export class NewUserComponent implements OnInit {
     })
   }
   
+  guardarHabito(event?: MouseEvent){
+    var tmp =document.getElementById("start")?.value;
+    console.log(tmp);
+  }
+
   seleccion(){
     var titulo = this.getElementsByClassName("titulo")[0];
     console.log(titulo.textContent)
     
     window.localStorage.setItem("habito",titulo.textContent);
-    var myModal = new bootstrap.Modal(document.getElementById('myModal'))
-    myModal.show()
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
+    document.getElementById("exampleModalLabel")?.textContent=titulo.textContent;
   }
 
 }
