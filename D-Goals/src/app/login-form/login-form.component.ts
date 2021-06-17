@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
 import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { skip } from 'rxjs/operators';
+import * as $ from "jquery";
 
 
 @Component({
@@ -15,13 +16,16 @@ import { skip } from 'rxjs/operators';
 export class LoginFormComponent implements OnInit {
 
   constructor( private http: HttpClient,private router: Router ) { }
-
-  ngOnInit(): void {}
   
+  ngOnInit(): void {
+    $('#error').addClass("ocultar")
+  }
   
-  model = new User("Carol","1234567123",'','');
+  //model = new User("Carol","1234567123",'','');
+  model = new User('','','','');
   autenticacion = new AuthService(this.http);
   submitted = false;
+
 
   onSubmit() {
     this.submitted = true;
@@ -37,5 +41,10 @@ export class LoginFormComponent implements OnInit {
          this.router.navigate(["/home"]);
        }
     );
+  }
+  ocultarAlerta(event?: MouseEvent){
+    console.log("hi")
+    $('#error').removeClass("show");
+    $('#error').addClass("ocultar");
   }
 }

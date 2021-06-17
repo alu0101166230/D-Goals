@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../__models/user';
-
+import * as $ from "jquery";
 @Injectable({ providedIn: 'root' })
 
 // Exportamos el servicio de autenticacion
@@ -61,8 +61,8 @@ export class AuthService {
         return resultado;
       }
       else{
-        // document.getElementById("error").style.display="true";
-        console.log("crear reaccion de credenciales fallidas");
+        $('#error').addClass("show")
+        $('#error').removeClass("ocultar");
         return 0;
       }
       

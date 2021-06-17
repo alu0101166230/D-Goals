@@ -1,38 +1,28 @@
-<div class="container">
-    <h1>User Form</h1>
+<div class="container" >
+    <h1>Iniciar Sesión</h1>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
-        <label for="name">Name</label>
+
         <input type="text" class="form-control" id="name"
                 required
-                [(ngModel)]="model.username" name="name">
+                [(ngModel)]="model.username" placeholder="Usuario" name="name">
       </div>
 
       <div class="form-group">
-        <label for="Contraseña">Contraseña</label>
+
         <input type="password"  class="form-control" id="password"
-                [(ngModel)]="model.password" name="password">
+                [(ngModel)]="model.password" placeholder="Contraseña" name="password">
       </div>
-      <button type="submit" class="btn btn-success">Iniciar Sesión</button>
-      <a routerLink="/signin" id="Registro">Regístrate</a>
-      <div class="alert alert-danger" role="alert">
-        Error en las credenciales
-      </div>
+      <div class="form-group">
+      <button type="submit" class="btn btn-success" id="blogin">Iniciar Sesión</button>
+      <button type="button" class="btn btn-default"id="bregister"><a routerLink="/signin">Registrate</a></button></div>
     </form>
-
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          Column
-        </div>
-        <div class="col">
-          Column
-        </div>
-        <div class="col">
-          Column
-        </div>
+    
+    <div>
+      <div class="alert alert-danger" role=alert id="error">
+        <button type="button" class="close" (click)="ocultarAlerta($event)" id="alerta">&times;</button>
+        Error en las credenciales
       </div>
     </div>
 </div>
+
