@@ -1,10 +1,11 @@
 
 .container{
     background-color:#b8f7e6;
-    padding:5%;
+    padding:10%; 
     border-radius: 15px;
     width:max-content;
     margin-top: 5%;
+    margin-left: 5%;
 
 }
 h1{

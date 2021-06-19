@@ -1,24 +1,25 @@
 <div class="container" >
-    <h1>Iniciar Sesión</h1>
+    
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-
+      <div class="row"><h1>Iniciar Sesión</h1></div>
+      <div class="form-group row">
         <input type="text" class="form-control" id="name"
                 required
                 [(ngModel)]="model.username" placeholder="Usuario" name="name">
       </div>
 
-      <div class="form-group">
+      <div class="form-group row">
 
         <input type="password"  class="form-control" id="password"
                 [(ngModel)]="model.password" placeholder="Contraseña" name="password">
       </div>
-      <div class="form-group">
-      <button type="submit" class="btn btn-success" id="blogin">Iniciar Sesión</button>
-      <button type="button" class="btn btn-default"id="bregister"><a routerLink="/signin">Registrate</a></button></div>
+      <div class="form-group row">
+        <button type="submit" class="btn btn-success" id="blogin">Iniciar Sesión</button>
+        <button type="button" class="btn btn-default"id="bregister"><a routerLink="/signin">Registrate</a></button>
+    </div>
     </form>
     
-    <div>
+    <div class="row">
       <div class="alert alert-danger" role=alert id="error">
         <button type="button" class="close" (click)="ocultarAlerta($event)" id="alerta">&times;</button>
         Error en las credenciales
