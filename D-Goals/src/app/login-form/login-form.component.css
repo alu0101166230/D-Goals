@@ -39,3 +39,6 @@ a{
 .show{
     display:block;
 }
+:invalid :-ms-input-placeholder{
+    color:red;
+}
