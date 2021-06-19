@@ -41,28 +41,21 @@ app.post("/login",(req,res)=>{
   }).catch((e)=>{
     res.send(e);
   });
+  
 });
-
 app.post("/usuario",(req,res)=>{
   let user = req.body.user;
-  let nombre_habito = req.body.habit["nombre"];
-  let habit = { $set: {
-	habito:{
-		[nombre_habito]:{
-			dias:req.body.habit["dias"],
-			horario:req.body.habit["horario"]
-			}
-		}
-	}
-  };
-  console.log(nombre_habito);
+  let habit = { $set: req.body.habit };
+
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user}).then((lists)=>{
-    res.send(lists);
+    // res.send(lists);
     let cuenta = lists[0];
-    Usuario.updateOne ({habito:{vacio:true}},habit,function(err,res){
+	  Usuario.updateOne ({nombre:user},habit,function(err,res){
 	if (err) throw err;
 	    console.log("1 document updated");
+    	    db.close();
+
     });
     res.send();
 
@@ -70,18 +63,14 @@ app.post("/usuario",(req,res)=>{
     res.send(e);
   });
 
-});
-
+})
 app.post("/singin",(req,res)=>{
   // Creamos el objeto de perfil nuevo, conforme a la informacion proporcionada por el formulario html 
   let newUser = new Usuario({
     nombre : req.body.user,
     password : req.body.password,
     correo : req.body.email,
-    schema_version:1.1,
-    habito: {
-	vacio:true
-	}
+    schema_version:1.1
   });
   // Escribimos en la Base de datos el nuevo perfil
   newUser.save().then((listDoc)=>{

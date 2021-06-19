@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router, RouterStateSnapshot, ActivatedRouteSnapshot  } from '@angular/router';
 import { HttpInterceptor } from  '@angular/common/http';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { User } from './__models/user';
@@ -16,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { NewHabitComponent } from './new-habit/new-habit.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   bootstrap: [AppComponent],
   providers: [

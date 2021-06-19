@@ -1,26 +1,33 @@
 <div class="container">
-  <h1>User Form</h1>
+  <h1>Regístrate</h1>
   <form (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="form-group">
-      <label for="name">Name</label>
       <input type="text" class="form-control" id="name"
              required
-             [(ngModel)]="model.username" name="name">
+             [(ngModel)]="model.username" name="name" placeholder="Usuario*" minlength="4">
     </div>
-
     <div class="form-group">
-      <label for="Contraseña">Contraseña</label>
       <input type="password"  class="form-control" id="password"
-             [(ngModel)]="model.password" name="password">
+             [(ngModel)]="model.password" name="password" placeholder="Contraseña*" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}">
     </div>
-
+    <div class="form-group"> 
+      <input type="password"  class="form-control" id="password2" name="password2" placeholder="Confirmar Contraseña*" required>
+    </div>
     <div class="form-group">
-      <label for="Correo">Correo</label>
-      <input type="email" class="form-control" id="email"
-             required
+      <input type="email" class="form-control" id="email" placeholder="Correo Electrónico*"
+             required email
              [(ngModel)]="model.email" name="email">
     </div>
+    <div class="form-group">
+      <input type="checkbox" name="active" ngModel required>
+      <label> He leído y acepto los términos y condiciones*</label>
+    </div>
 
-    <button type="submit" class="btn btn-success" >Registrate</button>
+
+    <div class="form-group row">
+      <button type="submit" class="btn btn-success" id="bregister" [disabled]="userForm.invalid" >Regístrate</button>
+      <button type="button" class="btn btn-default" id="blogin"><a routerLink="/login">Inicia Sesión</a></button>
+  </div>
   </form>
+
 </div>

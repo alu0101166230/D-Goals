@@ -13,7 +13,9 @@ export class SigninComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    $('#error').addClass("ocultar")
+  }
 
   model = new User("","","","");
   autenticacion = new AuthService(this.http);
@@ -27,5 +29,10 @@ export class SigninComponent implements OnInit {
   hacerPeticion(){
     let resultado = this.autenticacion.singin(this.model.username,this.model.password,this.model.email);
     console.log(this.model);
+  }
+  ocultarAlerta(event?: MouseEvent){
+    console.log("hi")
+    $('#error').removeClass("show");
+    $('#error').addClass("ocultar");
   }
 }
