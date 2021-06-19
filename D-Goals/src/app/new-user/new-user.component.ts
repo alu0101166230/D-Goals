@@ -94,17 +94,19 @@ export class NewUserComponent implements OnInit {
 
     let data =JSON.stringify({
       user: perfil["username"],
-      password: perfil["password"]});
+      habit: habito_elegido 
+    });
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
     
-    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
-      var user_profile = data[0];
-      console.log(user_profile);
-      
-
+    return this.http.post<any>(`http://10.6.130.59:8081/usuario`,data,httpOptions).subscribe(data =>{
+      this.router.navigate(["/home"]);  
       return data;
+
+
+
+      
     })
 
 
