@@ -1,12 +1,13 @@
 .container{
-    background-color:#b8f7e6;
-    padding:20%; 
-    padding-top: 5%;
-    padding-bottom: 5%;
-    border-radius: 15px;
-    width:max-content;
-}
 
+}
+mat-card{
+    background-color:#b8f7e6;
+    border-radius: 15px;
+    padding:5%;
+    margin:auto;
+    width:min-content;
+}
 #blogin{
     background-color: #fff6be ;
     color: black;
@@ -20,6 +21,9 @@
     border:0px;
     margin-top: 5%;
 }
+#bregister:disabled{
+    background-color: #f5e9e0;
+}
 a{
     color:black;
 }
@@ -32,13 +36,5 @@ a{
 .show{
     display:block;
 }
-input:invalid{
-    box-shadow: 0 0 5px 1px red;
-}
-input:valid{
-    box-shadow: 0 0 5px 1px rgb(0, 128, 100);
-}
-input:checked{
-    box-shadow: none;
-}
+
   

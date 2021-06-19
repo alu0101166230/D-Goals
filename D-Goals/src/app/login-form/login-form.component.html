@@ -2,18 +2,19 @@
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
       
       <h1>Iniciar Sesión</h1>
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Usuario:</mat-label>
         <input matInput type="text" class="form-control" id="name"
                 [(ngModel)]="model.username" placeholder="Usuario*" name="name" required>
-                <mat-hint>Este campo es obligatorio</mat-hint>
+                <mat-hint>Este campo es obligatorio*</mat-hint>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field >
         <mat-label>Contraseña:</mat-label>
-        <input matInput type="password"  class="form-control" id="password"
+        <input matInput [type]="hide ? 'password' : 'text'"  class="form-control" id="password"
                 [(ngModel)]="model.password" placeholder="Contraseña*" name="password" required>
-        <mat-hint>Este campo es obligatorio</mat-hint>        
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>       
       </mat-form-field>
       <div class="form-group row">
         <button type="submit" class="btn btn-success" id="blogin" [disabled]="userForm.invalid">Iniciar Sesión</button>

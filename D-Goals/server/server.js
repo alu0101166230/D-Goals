@@ -50,12 +50,12 @@ app.post("/usuario",(req,res)=>{
 	habito:{
 		[nombre_habito]:{
 			dias:req.body.habit["dias"],
-			horario:req.body.habit["horario"]
+			horario:req.body.habit["horario"],
+			horas:req.body.habit["horas"]
 			}
 		}
 	}
   };
-  console.log(nombre_habito);
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user}).then((lists)=>{
     res.send(lists);

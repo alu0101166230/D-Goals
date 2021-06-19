@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,6 +7,10 @@ import { RouterModule, Router, RouterStateSnapshot, ActivatedRouteSnapshot  } fr
 import { HttpInterceptor } from  '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { User } from './__models/user';
@@ -32,14 +37,22 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
   bootstrap: [AppComponent],
   providers: [
     {
       provide: 'canActivateTeam',
       useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => true
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance:"legacy"}
     }
   ]})
 export class AppModule { }

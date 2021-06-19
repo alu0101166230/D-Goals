@@ -15,6 +15,7 @@ import * as $ from "jquery";
 })
 export class LoginFormComponent implements OnInit {
 
+  hide = true;
   constructor( private http: HttpClient,private router: Router ) { }
   
   ngOnInit(): void {
