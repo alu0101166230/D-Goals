@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     
     return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
       this.Perfil= data[0]["habito"];
-      if(this.Perfil){
+      if(this.Perfil["vacio"]!=true){
 
       }
       else{

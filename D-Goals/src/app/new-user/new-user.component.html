@@ -4,36 +4,112 @@
 </div>
 
 <div>
-    <h1>Lista de habitos</h1>
-    <style>
-    table, th, tr {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    </style>
-    <div>
-        <a>Seleccione un habito</a>
-        <table id="tabla">
-            <tr>
-                <th>Habito</th>
-                <th>Resumen</th>
-                <th>Imagen</th>
-            </tr>
-        </table>
-
+  <h1>Lista de habitos</h1>
+  
+  <div class="container" >
+    <div class="row" id="grid-contenido">
+      
+      <div class="col col-lg-4" style="background-color: red;" id="grid-izquierdo"></div>
+      <div class="col-md-3 " style="background-color: blue;">
+        espacio 
+      </div>
+      <div class="col col-lg-4" style="background-color: green;" id="grid-derecho"></div>
     </div>
-    <div class="container">
-        <div class="row">
-          <div class="col">
-            Column
-          </div>
-          <div class="col">
-            Column
-          </div>
-          <div class="col">
-            Column
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" style="max-width: 50%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body">
+        Introduzca la frecuencia del habito planificado
+
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Lunes">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Lunes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Martes" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  Martes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Miercoles" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Miercoles
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Jueves" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Jueves
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Viernes" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Viernes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Sabado" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Sabado
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Domingo" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Domingo
+                </label>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="row">
+                Horario
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="md-form ">
+                    <input type="time" id="start" class="form-control"  value="" mdbInput />
+                    <label for="input">Empieza</label>
+                  </div>  
+                </div>
+                <div class="col">
+                  <div class="md-form ">
+                    <input type="time" id="end" class="form-control"  value="13:00" mdbInput />
+                    <label for="input">Termina</label>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="guardar" (click)="guardarHabito($event)">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>

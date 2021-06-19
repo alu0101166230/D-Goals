@@ -44,6 +44,31 @@ app.post("/login",(req,res)=>{
   
 });
 
+$addFields
+app.post("/usuario",(req,res)=>{
+  let user = req.body.user;
+  let habit =req.body.habit;
+          
+      
+  console.log(habit);
+  // hacemos la consulta segun el usuario y la pass, retornamos el perfil
+  Usuario.find({nombre:user}).then((lists)=>{
+    res.send(lists);
+    let cuenta = lists[0];
+    Usuario.updateOne ({$addFields:{habito: habit}},function(err,res){
+     if (err) throw err;
+         console.log("1 document updated");
+         db.close();
+
+    });
+    res.send();
+
+  }).catch((e)=>{
+    res.send(e);
+  });
+
+})
+
 app.post("/singin",(req,res)=>{
   // Creamos el objeto de perfil nuevo, conforme a la informacion proporcionada por el formulario html 
   let newUser = new Usuario({
@@ -58,42 +83,6 @@ app.post("/singin",(req,res)=>{
   })
 })
 
-
-// app.patch("/lists/:id",(req,res)=>{
-//   List.findOneAndUpdate({_id: req.params.id},{
-//     $set: req.body
-//   }).then(()=>{
-//     res.sendStatus(200);
-//   });
-// });
-
-// app.delete("/lists/:id",(req,res)=>{
-//   List.findOneAndRemove({
-//     _id: req.params.id
-//   }).then((removeListDoc)=>{
-//     res.send(removedListDoc)
-//   });
-
-// });
-
-// app.get('/lists/:listID/tasks',(req,res)=>{
-//   Task.find({
-//     _listId:req.params.listId
-//   }).then(()=>{
-//     res.send(tasks);
-//   })
-// });
-   
-// app.post('/lists/:listId/tasks',(req,res)=>{
-//   let newTask = new Task({
-//     title: req.body.title,
-//     _listId: req.params.listId
-//   });
-//   newTask.save().then((newTaskDoc)=>{
-//     res.send(newTaskDoc);
-//   })
-// })
-
 // app.patch('/lists/:listId/tasks/:tasId',(req,res)=>{
 //   Task.findOneAndUpdate({
 //     _id:req.params.taskId,
@@ -105,14 +94,7 @@ app.post("/singin",(req,res)=>{
 //   })
 // });
 
-// app.delete('/lists/:listId/tasks/:taskId',(req,res)=>{
-//   Task.findOneAndRemove({
-//     _id:req.params.taskId,
-//     _listId:req.params.listId
-//   }).then((removedTaskDoc)=>{
-//     res.send(removedTaskDoc);
-//   })
-// });
+
 ///////////////////////// Habitos /////////////////
 app.delete("/habit",(req,res)=>{
   Habito.findOneAndRemove({
