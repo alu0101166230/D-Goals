@@ -18,8 +18,6 @@ export class NewUserComponent implements OnInit {
   ngOnInit(): void {
     const izquierdo = document.getElementById("grid-izquierdo");
     const derecho = document.getElementById("grid-derecho");
-    // document.getElementById("guardar").addEventListener("click",this.guardar_habito,false);
-
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
@@ -73,8 +71,45 @@ export class NewUserComponent implements OnInit {
   }
   
   guardarHabito(event?: MouseEvent){
-    var tmp =document.getElementById("start")?.value;
-    console.log(tmp);
+    var hora_inicio =document.getElementById("start")?.value;
+    var hora_fin = document.getElementById("end")?.value;
+    var dias = document.getElementsByClassName("form-check-input");
+    var rango_dias = [];
+    var horario = [];
+    horario.push(hora_inicio);
+    horario.push(hora_fin);
+    for (let i = 0; i < dias.length; i++) {
+      if(dias[i].checked ==true){
+        rango_dias.push(dias[i].id);
+      }
+    }
+    let nombre_habito = document.getElementById("exampleModalLabel")?.textContent;
+    let habito_elegido = {
+      nombre: nombre_habito,
+      dias: rango_dias,
+      horario: horario
+    }
+    let perfil =JSON.parse( localStorage.getItem("currentUser")); 
+    // console.log(perfil["username"]);
+
+    let data =JSON.stringify({
+      user: perfil["username"],
+      password: perfil["password"]});
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
+    
+    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+      var user_profile = data[0];
+      console.log(user_profile);
+      
+
+      return data;
+    })
+
+
+
+
   }
 
   seleccion(){
