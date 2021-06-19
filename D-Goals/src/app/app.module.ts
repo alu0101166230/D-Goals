@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { NewHabitComponent } from './new-habit/new-habit.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     HomeComponent,
     NewUserComponent,
     NewHabitComponent,
-    NavBarComponent
+    NavBarComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
