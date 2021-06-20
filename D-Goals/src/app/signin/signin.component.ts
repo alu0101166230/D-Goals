@@ -10,11 +10,11 @@ import {HttpClient, HttpHeaders } from "@angular/common/http";
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-
+  
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    $('#error').addClass("ocultar")
+    $('#error').addClass("ocultar");
   }
 
   model = new User("","","","");

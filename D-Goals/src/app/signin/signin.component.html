@@ -1,5 +1,4 @@
 <div class="container">
- 
     <mat-card>
       <form (ngSubmit)="onSubmit()" #userForm="ngForm">
       <mat-card-header>
@@ -10,24 +9,26 @@
           <mat-label> Usuario</mat-label>
           <input matInput type="text" class="form-control" id="name"
                 required
-                [(ngModel)]="model.username" name="name" placeholder="Usuario*" minlength="4">
+                [(ngModel)]="model.username" name="name" placeholder="Usuario*" minlength="4" #name="ngModel">
+                <mat-error *ngIf="name.errors?.required">Introduce un nombre de usuario</mat-error>
+                <mat-error *ngIf="name.errors?.minlength">El nombre de usuario debe tener al menos 4 caracteres</mat-error>
         </mat-form-field>
+        
     <mat-form-field>
       <mat-label>Contraseña</mat-label>
       <input matInput type="password"  class="form-control" id="password"
-             [(ngModel)]="model.password" name="password" placeholder="Contraseña*" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}">
-    </mat-form-field>
-    <mat-form-field> 
-      <mat-label>Confirmar Contraseña:</mat-label>
-      <input matInput type="password"  class="form-control" id="password2" name="password2" placeholder="Confirmar Contraseña*" required>
-    </mat-form-field>
+             [(ngModel)]="model.password" name="password" placeholder="Contraseña*" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" #password="ngModel">
+             <mat-error *ngIf="password.errors?.minlength">Mínimo 8 caracteres</mat-error>
+             <mat-error *ngIf="password.errors?.pattern">Minimo 1 Mayuscula, una minuscula y un numero</mat-error>
+            </mat-form-field>
     <mat-form-field>
       <mat-label>Correo Electrónico:</mat-label>
       <input matInput type="email" class="form-control" id="email" placeholder="Correo Electrónico*"
              required email
-             [(ngModel)]="model.email" name="email">
-    </mat-form-field>
-      <mat-checkbox name="active" ngModel required>He leído y acepto los términos y condiciones</mat-checkbox>
+             [(ngModel)]="model.email" name="email" #email="ngModel">
+             <mat-error *ngIf="email.invalid">Introduce un correo electrónico válido</mat-error>     
+    </mat-form-field> 	
+      <mat-checkbox name="active" ngModel required >He leído y acepto los términos y condiciones</mat-checkbox>
   </mat-card-content>
       <mat-card-actions>
       <button mat-raised-button type="submit" class="btn btn-success" id="bregister" [disabled]="userForm.invalid" >Regístrate</button>
@@ -35,4 +36,10 @@
   </mat-card-actions>
   </form>
 </mat-card>
+<div class="alert alert-danger" role=alert id="error">
+  <p>Error en las credenciales</p> 
+  <button mat-icon-button matSuffix aria-label="close" (click)="ocultarAlerta($event)">
+    <mat-icon>close</mat-icon>
+  </button> 
+</div>
 </div>

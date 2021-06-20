@@ -1,12 +1,33 @@
-.container{
 
-}
 mat-card{
     background-color:#b8f7e6;
     border-radius: 15px;
     padding:5%;
     margin:auto;
     width:min-content;
+}
+mat-card-actions{
+    display:flex;
+    flex-direction: row;
+}
+a{
+    color:black;
+}
+
+#error{
+    margin-top:5%;
+    padding:5%;
+    background-color: #f8d7da;
+    color:#721c24;
+    width:max-content;
+    border-radius: 5px;
+}
+.ocultar{
+    display:none;
+}
+.show{
+    display:flex;
+    flex-direction: row;
 }
 #blogin{
     background-color: #fff6be ;
@@ -24,17 +45,3 @@ mat-card{
 #bregister:disabled{
     background-color: #f5e9e0;
 }
-a{
-    color:black;
-}
-#error{
-    margin-top:5%;
-}
-.ocultar{
-    display:none;
-}
-.show{
-    display:block;
-}
-
-  

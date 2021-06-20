@@ -27,7 +27,7 @@ const ListSchema = new mongoose.Schema({
     type:Number,
     default:0
   },
-  dias_seguidos:{
+  racha:{
     type:Number,
     default:0
   }

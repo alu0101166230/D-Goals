@@ -1,7 +1,10 @@
 <div class="container" >
+    <mat-card>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      
-      <h1>Iniciar Sesión</h1>
+      <mat-card-header>
+      <mat-card-title>Iniciar Sesión</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
       <mat-form-field>
         <mat-label>Usuario:</mat-label>
         <input matInput type="text" class="form-control" id="name"
@@ -16,17 +19,18 @@
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>       
       </mat-form-field>
-      <div class="form-group row">
-        <button type="submit" class="btn btn-success" id="blogin" [disabled]="userForm.invalid">Iniciar Sesión</button>
-        <button type="button" class="btn btn-default"id="bregister"><a routerLink="/signin">Registrate</a></button>
-    </div>
-  </form>
-    
-    <div class="row">
-      <div class="alert alert-danger" role=alert id="error">
-        <button type="button" class="close" (click)="ocultarAlerta($event)" id="alerta">&times;</button>
-        Error en las credenciales
+    </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" class="btn btn-success" id="blogin" [disabled]="userForm.invalid">Iniciar Sesión</button>
+        <button mat-raised-button type="button" class="btn btn-default"id="bregister"><a routerLink="/signin">Registrate</a></button>
+    </mat-card-actions>
+</form>
+      <div class="alert" role=alert id="error">
+        <p>Error en las credenciales</p> 
+        <button mat-icon-button matSuffix aria-label="close" (click)="ocultarAlerta($event)">
+          <mat-icon>close</mat-icon>
+        </button> 
       </div>
-    </div>
-</div>
+  </mat-card>
+  </div>
 

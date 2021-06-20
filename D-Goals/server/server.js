@@ -43,6 +43,33 @@ app.post("/login",(req,res)=>{
   });
 });
 
+app.post("/update_usuario",(req,res)=>{
+    let user = req.body.user;
+    let cambio = req.body.cambio;
+    let valor = req.body.valor;
+    let query = { $set:{
+        [cambio]:valor,
+	nombre:user
+    }}
+	console.log(user);
+	console.log(cambio);
+	console.log(valor);
+	console.log(query);
+    Usuario.find({nombre:user}).then((lists)=>{
+    res.send(lists);
+    let cuenta = lists[0][cambio];
+	console.log(cuenta);
+    Usuario.updateOne ({[cambio]:cuenta,nombre:user},query,function(err,res){
+	if (err) throw err;
+	    console.log("1 document updated");
+    });
+    res.send();
+
+  }).catch((e)=>{
+    res.send(e);
+  });
+
+})
 app.post("/usuario",(req,res)=>{
   let user = req.body.user;
   let nombre_habito = req.body.habit["nombre"];
@@ -53,14 +80,15 @@ app.post("/usuario",(req,res)=>{
 			horario:req.body.habit["horario"],
 			horas:req.body.habit["horas"]
 			}
-		}
+		},
+	nombre:user
 	}
   };
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user}).then((lists)=>{
     res.send(lists);
     let cuenta = lists[0];
-    Usuario.updateOne ({habito:{vacio:true}},habit,function(err,res){
+    Usuario.updateOne ({habito:{vacio:true},nombre:user},habit,function(err,res){
 	if (err) throw err;
 	    console.log("1 document updated");
     });
