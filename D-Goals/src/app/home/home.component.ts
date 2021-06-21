@@ -99,11 +99,6 @@ export class HomeComponent implements OnInit {
     }
   }
   tarea_cumplida(tarea,inicio,fin){
-
-
-
-
-
     var tiempo_i = inicio.textContent;
     var tiempo_f = fin.textContent;
     // console.log(tiempo_i.substring(3,5));
@@ -118,8 +113,6 @@ export class HomeComponent implements OnInit {
     var decimas  = Math.abs((tmp_f - tmp_i)/60);
     tiempo_total= tiempo_total+decimas;
     // console.log(tiempo_total);
-
-    
 
     const cuenta = JSON.parse(window.localStorage.getItem("currentUser"));
     let data =JSON.stringify({
@@ -171,7 +164,27 @@ export class HomeComponent implements OnInit {
     
   } 
 
-  tarea_no_cumplida(tarea){
+  tarea_no_cumplida(){
+    const cuenta = JSON.parse(window.localStorage.getItem("currentUser"));
+    let data =JSON.stringify({
+      user: cuenta["username"],
+      password: cuenta["password"]});
 
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
+
+    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+      var racha_broken = 0
+      
+      let datos =JSON.stringify({
+        user: cuenta["username"],
+        cambio: "racha",
+        valor:racha_broken
+      });
+      this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+
+    }, error => {
+        console.log(JSON.stringify(error.json()));
+    });
   }
 }
