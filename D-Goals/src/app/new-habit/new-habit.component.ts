@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
+import { ModalComponent } from 'ngb-modal';
 @Component({
   selector: 'app-new-habit',
   templateUrl: './new-habit.component.html',
@@ -79,14 +80,14 @@ export class NewHabitComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
       
-    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+    this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
       
       if(data[0]["habito"][nombre_habito]){
         var habito = data[0]["habito"][nombre_habito]
         habito["dias"]=rango_dias;
         habito["horario"]=horario;
 
-        console.log (data[0])
+        
         let datos =JSON.stringify({
           user: perfil["username"],
           cambio: "habito",
@@ -108,19 +109,17 @@ export class NewHabitComponent implements OnInit {
         });
         this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
       }
-      this.router.navigate(["/home"]);
-
-  
+      
     }, error => {
         console.log(JSON.stringify(error.json()));
     });
-
+      this.router.navigate(["/home"]);
   }
 
   seleccion(){
     var titulo = this.getElementsByClassName("titulo")[0];
     console.log(titulo.textContent)
-    
+    var hola = new ModalComponent();
     window.localStorage.setItem("habito",titulo.textContent);
     var myModal = new bootstrap.Modal(document.getElementById('myModal'));
     myModal.show();
