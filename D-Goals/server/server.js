@@ -89,8 +89,8 @@ app.post("/usuario",(req,res)=>{
     res.send(lists);
     let cuenta = lists[0];
     Usuario.updateOne ({habito:{vacio:true},nombre:user},habit,function(err,res){
-	if (err) throw err;
-	    console.log("1 document updated");
+      if (err) throw err;
+          console.log("1 document updated");
     });
     res.send();
 
