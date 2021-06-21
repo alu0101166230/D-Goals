@@ -87,7 +87,8 @@ export class NewUserComponent implements OnInit {
     let habito_elegido = {
       nombre: nombre_habito,
       dias: rango_dias,
-      horario: horario
+      horario: horario,
+      horas:0
     }
     let perfil =JSON.parse( localStorage.getItem("currentUser")); 
     // console.log(perfil["username"]);
