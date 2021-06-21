@@ -74,10 +74,6 @@ export class CalendarioComponent implements OnInit {
                         case 5:{indicador.classList.add("Viernes");cell.appendChild(indicador);break;}
                         case 6:{indicador.classList.add("Sabado");cell.appendChild(indicador);break;}
                     }
-<<<<<<< HEAD
-                    
-=======
->>>>>>> html-calendario
                     if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                         cell.classList.add("bg-info");
                     }
