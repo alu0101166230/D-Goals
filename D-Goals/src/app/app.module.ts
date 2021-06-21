@@ -21,6 +21,7 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { NewHabitComponent } from './new-habit/new-habit.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     HomeComponent,
     NewUserComponent,
     NewHabitComponent,
-    NavBarComponent
+    NavBarComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,

@@ -83,12 +83,12 @@ function DEL_REQ (path_,data){
 }
 
 
-let resultado =GET_REQ("/habit");
-// const data = JSON.stringify({
-//   name: 'comprar leche',
-//   description:'ir a comprar leche es necesario'
-// })
+// let resultado =GET_REQ("/habit");
+const data = JSON.stringify({
+  name: 'estudiar',
+  description:'estudiar para obtener mejores calificaciones'
+})
 
-// let resultado = POST_REQ("/habit",data)
+let resultado = POST_REQ("/habit",data)
 // let resultado = DEL_REQ("/habit",data)
 console.log(resultado)

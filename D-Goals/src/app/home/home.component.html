@@ -1,5 +1,24 @@
 <div class="container">
 
 <h1>Esto es Home</h1>
+<div class="row">
+    <div class="col">
+        <app-calendario></app-calendario>
+    </div>
+    <div class="col" id="actividades">
+        <h1>Mis actividades de hoy</h1>
+        <div class="row">
+            <div class="col"> Nombre</div>
+            <div class="col"> Inicio</div>
+            <div class="col"> Fin </div>
+            <div class="col-1"> v</div>
+            <div class="col-1"> X</div>
+        </div>
+    </div>
+</div>
+
+
 
 </div>
+
+<button type="button" class="btn btn-primary" (click)="crearHabito($event)">Agregar nuevo habito</button>

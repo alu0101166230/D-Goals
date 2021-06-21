@@ -7,15 +7,16 @@ import {Router} from "@angular/router";
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.css']
+  
 })
 export class NewUserComponent implements OnInit {
 
   constructor(private http: HttpClient,private router: Router) { 
-    // this.habito_elegido =0;
   }
 
   ngOnInit(): void {
-    const tabla = document.getElementById("tabla");
+    const izquierdo = document.getElementById("grid-izquierdo");
+    const derecho = document.getElementById("grid-derecho");
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
@@ -23,33 +24,104 @@ export class NewUserComponent implements OnInit {
     this.http.get<any>(`http://10.6.130.59:8081/habit`,httpOptions).subscribe(data =>{
       console.log(data);
       for(var x=0; x< data.length; x++){
-        var tr = document.createElement("tr");
-        var th_name= document.createElement("th");
-        var th_description= document.createElement("th");
-        var th_img=document.createElement("th");
+          var container = document.createElement("div");
+          container.classList.add("container");
 
-        // tr.onclick =this.seleccion(tr);
-        tr.addEventListener("click",this.seleccion,false);
+          document.getElementById("")?.classList.add("")
 
-        let element = data[x];
-        th_name.textContent =element["nombre"];
-        th_description.textContent = element["descripcion"];
-        th_img.textContent= "asdfasdf"; 
-        tr.appendChild(th_name);
-        tr.appendChild(th_description);
-        tr.appendChild(th_img);
-        tabla?.appendChild(tr);
+          var div_imagen = document.createElement("div");
+          div_imagen.classList.add("text-center");
+          var imagen = document.createElement("img");
+          imagen.src="../../assets/Square_200x200.png";
+          imagen.classList.add("rounded");
 
+          var div_titulo = document.createElement("div");
+          var titulo = document.createElement("h1");
+          let element = data[x];
+          titulo.textContent = element["nombre"];
+          titulo.classList.add("titulo");
+
+
+          var div_descripcion = document.createElement("div");
+          var descripcion = document.createElement("p");
+          descripcion.textContent=element["descripcion"];
+          descripcion.classList.add("descripcion");
+
+          div_descripcion.appendChild(descripcion);
+          div_titulo.appendChild(titulo);
+          div_imagen.appendChild(imagen);
+
+          
+          container.appendChild(div_imagen);
+          container.appendChild(div_titulo);
+          container.appendChild(div_descripcion);
+
+
+        if(x%2==0){
+          izquierdo?.appendChild(container);
+        }
+        if(x%2==1){
+          derecho?.appendChild(container);
+        }
+        container.addEventListener("click",this.seleccion,false);
       };
       return data;
     })
   }
   
+  guardarHabito(event?: MouseEvent){
+    var hora_inicio =document.getElementById("start")?.value;
+    var hora_fin = document.getElementById("end")?.value;
+    var dias = document.getElementsByClassName("form-check-input");
+    var rango_dias = [];
+    var horario = [];
+    horario.push(hora_inicio);
+    horario.push(hora_fin);
+    for (let i = 0; i < dias.length; i++) {
+      if(dias[i].checked ==true){
+        rango_dias.push(dias[i].id);
+      }
+    }
+    let nombre_habito = document.getElementById("exampleModalLabel")?.textContent;
+    let habito_elegido = {
+      nombre: nombre_habito,
+      dias: rango_dias,
+      horario: horario,
+      horas:0
+    }
+    let perfil =JSON.parse( localStorage.getItem("currentUser")); 
+    // console.log(perfil["username"]);
+
+    let data =JSON.stringify({
+      user: perfil["username"],
+      habit: habito_elegido 
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
+    
+    return this.http.post<any>(`http://10.6.130.59:8081/usuario`,data,httpOptions).subscribe(data =>{
+      this.router.navigate(["/home"]);  
+      return data;
+
+
+
+      
+    })
+
+
+
+
+  }
+
   seleccion(){
-    console.log(this)
-    // this.habito_elegido=this.childNodes[0].textContent;
-    // Object.getPrototypeOf(this).route
-    // NewUserComponent.router.navigate(["/newhabit"]);
+    var titulo = this.getElementsByClassName("titulo")[0];
+    console.log(titulo.textContent)
+    
+    window.localStorage.setItem("habito",titulo.textContent);
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
+    document.getElementById("exampleModalLabel")?.textContent=titulo.textContent;
   }
 
 }

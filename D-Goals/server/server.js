@@ -100,6 +100,30 @@ app.post("/usuario",(req,res)=>{
 
 });
 
+$addFields
+app.post("/usuario",(req,res)=>{
+  let user = req.body.user;
+  let habit =req.body.habit;
+
+  console.log(habit);
+  // hacemos la consulta segun el usuario y la pass, retornamos el perfil
+  Usuario.find({nombre:user}).then((lists)=>{
+    res.send(lists);
+    let cuenta = lists[0];
+    Usuario.updateOne ({$addFields:{habito: habit}},function(err,res){
+     if (err) throw err;
+         console.log("1 document updated");
+         db.close();
+
+    });
+    res.send();
+
+  }).catch((e)=>{
+    res.send(e);
+  });
+
+})
+
 app.post("/singin",(req,res)=>{
   // Creamos el objeto de perfil nuevo, conforme a la informacion proporcionada por el formulario html 
   let newUser = new Usuario({
