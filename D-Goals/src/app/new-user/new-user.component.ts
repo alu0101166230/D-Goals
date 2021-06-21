@@ -12,7 +12,6 @@ import {Router} from "@angular/router";
 export class NewUserComponent implements OnInit {
 
   constructor(private http: HttpClient,private router: Router) { 
-    // this.habito_elegido =0;
   }
 
   ngOnInit(): void {

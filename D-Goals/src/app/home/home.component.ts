@@ -66,10 +66,9 @@ export class HomeComponent implements OnInit {
             
             hecho.addEventListener('click',()=>{
               this.tarea_cumplida(nombre,inicio,fin);
-              console.log(fila);
             });
             no_hecho.addEventListener('click',()=>{
-              console.log("hola");
+              this.tarea_no_cumplida();
             });
             fila.appendChild(nombre);
             fila.appendChild(inicio);
@@ -186,5 +185,8 @@ export class HomeComponent implements OnInit {
     }, error => {
         console.log(JSON.stringify(error.json()));
     });
+  }
+  crearHabito(event?: MouseEvent){
+    this.router.navigate(["/newhabit"]);
   }
 }

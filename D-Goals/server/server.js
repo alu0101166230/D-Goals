@@ -48,8 +48,7 @@ $addFields
 app.post("/usuario",(req,res)=>{
   let user = req.body.user;
   let habit =req.body.habit;
-          
-      
+
   console.log(habit);
   // hacemos la consulta segun el usuario y la pass, retornamos el perfil
   Usuario.find({nombre:user}).then((lists)=>{
