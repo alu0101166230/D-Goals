@@ -28,10 +28,9 @@ export class SigninComponent implements OnInit {
   }
   hacerPeticion(){
     let resultado = this.autenticacion.singin(this.model.username,this.model.password,this.model.email);
-    console.log(resultado);
+    
   }
   ocultarAlerta(event?: MouseEvent){
-
     $('#error').removeClass("show");
     $('#error').addClass("ocultar");
   }

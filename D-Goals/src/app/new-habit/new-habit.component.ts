@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
-
+import { Modal } from 'bootstrap';
 @Component({
   selector: 'app-new-habit',
   templateUrl: './new-habit.component.html',
@@ -121,7 +121,7 @@ export class NewHabitComponent implements OnInit {
     var titulo = document.getElementsByClassName("titulo")[0];
     console.log(titulo.textContent)
     window.localStorage.setItem("habito",titulo.textContent);
-    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    var myModal = new Modal(document.getElementById('myModal'));
     myModal.show();
     document.getElementById("exampleModalLabel").textContent=titulo.textContent;
   }
