@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
 import { Modal } from 'bootstrap';
+import { ContentObserver } from '@angular/cdk/observers';
 @Component({
   selector: 'app-new-habit',
   templateUrl: './new-habit.component.html',
@@ -40,6 +41,7 @@ export class NewHabitComponent implements OnInit {
           div_descripcion.appendChild(descripcion);
           div_titulo.appendChild(titulo);
           div_imagen.appendChild(imagen);
+          container.classList.add(titulo.textContent);
           container.appendChild(div_imagen);
           container.appendChild(div_titulo);
           container.appendChild(div_descripcion);
@@ -118,12 +120,14 @@ export class NewHabitComponent implements OnInit {
   }
 
   seleccion(){
-    var titulo = document.getElementsByClassName("titulo")[0];
-    console.log(titulo.textContent)
-    window.localStorage.setItem("habito",titulo.textContent);
+    // var titulo = this.getElementsByClassName("titulo");
+    let contendor = <unknown>this;
+    let titulo = (<HTMLElement>contendor).childNodes[1].childNodes[0].textContent; 
+    // console.log(titulo.textContent);
+    window.localStorage.setItem("habito",titulo);
     var myModal = new Modal(document.getElementById('myModal'));
     myModal.show();
-    document.getElementById("exampleModalLabel").textContent=titulo.textContent;
+    document.getElementById("exampleModalLabel").textContent=titulo;
   }
 
 }
