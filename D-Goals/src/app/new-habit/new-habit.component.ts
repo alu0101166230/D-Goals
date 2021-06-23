@@ -118,12 +118,12 @@ export class NewHabitComponent implements OnInit {
   }
 
   seleccion(){
-    //var titulo = document.getElementsByClassName("titulo")[0];
-    //console.log(titulo.textContent)
-    //window.localStorage.setItem("habito",titulo.textContent);
-    //var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-    //myModal.show();
-    //document.getElementById("exampleModalLabel").textContent=titulo.textContent;
+    var titulo = document.getElementsByClassName("titulo")[0];
+    console.log(titulo.textContent)
+    window.localStorage.setItem("habito",titulo.textContent);
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
+    document.getElementById("exampleModalLabel").textContent=titulo.textContent;
   }
 
 }

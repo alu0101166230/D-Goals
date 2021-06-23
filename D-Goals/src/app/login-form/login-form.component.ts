@@ -26,8 +26,6 @@ export class LoginFormComponent implements OnInit {
   model = new User('','','','');
   autenticacion = new AuthService(this.http);
   submitted = false;
-
-
   onSubmit() {
     this.submitted = true;
     var username = (<HTMLInputElement>document.getElementById("name")).value;
@@ -44,7 +42,6 @@ export class LoginFormComponent implements OnInit {
     );
   }
   ocultarAlerta(event?: MouseEvent){
-    console.log("hi")
     $('#error').removeClass("show");
     $('#error').addClass("ocultar");
   }

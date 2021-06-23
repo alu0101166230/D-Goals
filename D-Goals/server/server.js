@@ -115,7 +115,7 @@ app.post("/singin",(req,res)=>{
   newUser.save().then((listDoc)=>{
     res.send(listDoc);
   }).catch((e)=>{
-    res.send(e);
+    res.status(400).send(e);
   });
 })
 

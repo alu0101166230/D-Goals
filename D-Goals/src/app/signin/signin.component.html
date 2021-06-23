@@ -35,11 +35,12 @@
       <button mat-raised-button type="button" class="btn btn-default" id="blogin"><a routerLink="/login">Inicia Sesión</a></button>
   </mat-card-actions>
   </form>
+  <div class="alert alert-danger" role=alert id="error">
+    <p>Ya hay una cuenta registrada con esas credenciales</p> 
+    <button mat-icon-button matSuffix aria-label="close" (click)="ocultarAlerta($event)">
+      <mat-icon>close</mat-icon>
+    </button> 
+  </div>
 </mat-card>
-<div class="alert alert-danger" role=alert id="error">
-  <p>Ya hay una cuenta registrada con esas credenciales</p> 
-  <button mat-icon-button matSuffix aria-label="close" (click)="ocultarAlerta($event)">
-    <mat-icon>close</mat-icon>
-  </button> 
-</div>
+
 </div>

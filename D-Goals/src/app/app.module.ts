@@ -18,12 +18,11 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
-import { NewUserComponent,DialogHabito } from './new-user/new-user.component';
+import { NewUserComponent } from './new-user/new-user.component';
 import { NewHabitComponent } from './new-habit/new-habit.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { CalendarioComponent } from './calendario/calendario.component';
-import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +33,7 @@ import { DialogComponent } from './dialog/dialog.component';
     NewUserComponent,
     NewHabitComponent,
     NavBarComponent,
-    CalendarioComponent,
-    DialogComponent
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +49,6 @@ import { DialogComponent } from './dialog/dialog.component';
     MatCardModule,
     MatDialogModule
   ],
-  entryComponents:[DialogComponent],
   bootstrap: [AppComponent],
   providers: [
     {

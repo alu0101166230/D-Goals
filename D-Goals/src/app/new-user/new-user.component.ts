@@ -1,13 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
@@ -16,7 +10,7 @@ export interface DialogData {
 })
 export class NewUserComponent implements OnInit {
   
-  constructor(private http: HttpClient,private router: Router,public dialog: MatDialog) { 
+  constructor(private http: HttpClient,private router: Router) { 
   }
 
   ngOnInit(): void {
@@ -111,44 +105,15 @@ export class NewUserComponent implements OnInit {
       return data;
      })
   }
-  animal: string;
-  name: string;
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
 
   seleccion(){
-    // console.log(this.dialog);
-    // var dialogRef=this.dialog.open(DialogComponent,{});
-    // dialogRef.afterClosed().subscribe(res=>{
-    //   this.guardarHabito();
-    // });
-    // window.localStorage.setItem("habito",titulo[0].textContent);
-    // var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-    // myModal.show();
-    // document.getElementById("exampleModalLabel").textContent=titulo[0].textContent;
+    var titulo = document.getElementsByClassName("titulo")[0];
+    console.log(titulo.textContent)
+    window.localStorage.setItem("habito",titulo.textContent);
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
+    document.getElementById("exampleModalLabel").textContent=titulo.textContent;
   }
 
 }
-@Component({
-  selector: 'dialog-habito',
-  templateUrl: 'dialog-habito.html',
-})
 
-  export class DialogHabito{
-    constructor(
-      public dialogRef: MatDialogRef<DialogHabito>,
-      @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-      closedialog(): void {
-        this.dialogRef.close();
-      }
-  }

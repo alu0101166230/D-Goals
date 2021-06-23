@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../__models/user";
 import {AuthService} from "../__services/auth.service";
 import {HttpClient, HttpHeaders } from "@angular/common/http";
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +11,7 @@ import {HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class SigninComponent implements OnInit {
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router ) { }
 
   ngOnInit(): void {
     $('#error').addClass("ocultar");
@@ -24,14 +24,14 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     console.log(this.model)
-    this.hacerPeticion()
+    this.hacerPeticion();
   }
   hacerPeticion(){
     let resultado = this.autenticacion.singin(this.model.username,this.model.password,this.model.email);
-    console.log(this.model);
+    console.log(resultado);
   }
   ocultarAlerta(event?: MouseEvent){
-    console.log("hi")
+
     $('#error').removeClass("show");
     $('#error').addClass("ocultar");
   }
