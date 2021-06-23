@@ -11,17 +11,19 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { User } from './__models/user';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
-import { NewUserComponent } from './new-user/new-user.component';
+import { NewUserComponent,DialogHabito } from './new-user/new-user.component';
 import { NewHabitComponent } from './new-habit/new-habit.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { CalendarioComponent } from './calendario/calendario.component';
     NewUserComponent,
     NewHabitComponent,
     NavBarComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +48,10 @@ import { CalendarioComponent } from './calendario/calendario.component';
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
+  entryComponents:[DialogComponent],
   bootstrap: [AppComponent],
   providers: [
     {

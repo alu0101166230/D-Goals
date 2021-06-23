@@ -35,8 +35,15 @@ export class AuthService {
 
     return this.http.post<any>(`http://10.6.130.59:8081/singin`,data,httpOptions).subscribe(data =>{
         console.log(data);
+        if(data['name']=="MongoError"){
+          $('#error').addClass("show")
+          $('#error').removeClass("ocultar");
+        }
     }, error => {
         console.log(JSON.stringify(error.json()));
+        $('#error').addClass("show")
+        $('#error').removeClass("ocultar");
+        return 0;
     });
   }
 
@@ -68,6 +75,9 @@ export class AuthService {
       
     }, error => {
         console.log(JSON.stringify(error.json()));
+        $('#error').addClass("show")
+        $('#error').removeClass("ocultar");
+        return 0;
     });
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
-import { ModalComponent } from 'ngb-modal';
+
 @Component({
   selector: 'app-new-habit',
   templateUrl: './new-habit.component.html',
@@ -55,15 +55,16 @@ export class NewHabitComponent implements OnInit {
     })
   }
   guardarHabito(event?: MouseEvent){
-    var hora_inicio =document.getElementById("start")?.value;
-    var hora_fin = document.getElementById("end")?.value;
+    var hora_inicio =(<HTMLInputElement>document.getElementById("start")).value;
+    var hora_fin = (<HTMLInputElement>document.getElementById("end"))?.value;
     var dias = document.getElementsByClassName("form-check-input");
-    var rango_dias = [];
-    var horario = [];
+    var rango_dias = <any>[];
+    var horario = <any>[];
     horario.push(hora_inicio);
     horario.push(hora_fin);
     for (let i = 0; i < dias.length; i++) {
-      if(dias[i].checked ==true){
+      var dia=dias[i] as HTMLInputElement;
+      if(dia.checked ==true){
         rango_dias.push(dias[i].id);
       }
     }
@@ -117,13 +118,12 @@ export class NewHabitComponent implements OnInit {
   }
 
   seleccion(){
-    var titulo = this.getElementsByClassName("titulo")[0];
-    console.log(titulo.textContent)
-    var hola = new ModalComponent();
-    window.localStorage.setItem("habito",titulo.textContent);
-    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-    myModal.show();
-    document.getElementById("exampleModalLabel")?.textContent=titulo.textContent;
+    //var titulo = document.getElementsByClassName("titulo")[0];
+    //console.log(titulo.textContent)
+    //window.localStorage.setItem("habito",titulo.textContent);
+    //var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    //myModal.show();
+    //document.getElementById("exampleModalLabel").textContent=titulo.textContent;
   }
 
 }

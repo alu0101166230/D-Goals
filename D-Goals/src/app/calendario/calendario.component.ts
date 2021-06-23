@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { create } from 'domain';
 
 @Component({
   selector: 'app-calendario',
@@ -16,11 +15,12 @@ export class CalendarioComponent implements OnInit {
     let currentMonth = today.getMonth();
     let currentYear = today.getFullYear();
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    console.log(currentYear);
 
     let monthAndYear = document.getElementById("monthAndYear");
     showCalendar(currentMonth, currentYear);
 
-    function showCalendar(month, year) {
+    function showCalendar(month:number, year:number) {
 
         let firstDay = (new Date(year, month)).getDay();
         let daysInMonth = 32 - new Date(year, month, 32).getDate();
@@ -63,7 +63,7 @@ export class CalendarioComponent implements OnInit {
                 else {
                     
                     let cell = document.createElement("td");
-                    let cellText = document.createTextNode(date);
+                    let cellText = document.createTextNode(date.toString());
                     let indicador =document.createElement("div");
                     switch(j){
                         case 0:{indicador.classList.add("Domingo");cell.appendChild(indicador);break;}
@@ -74,10 +74,6 @@ export class CalendarioComponent implements OnInit {
                         case 5:{indicador.classList.add("Viernes");cell.appendChild(indicador);break;}
                         case 6:{indicador.classList.add("Sabado");cell.appendChild(indicador);break;}
                     }
-<<<<<<< HEAD
-                    
-=======
->>>>>>> html-calendario
                     if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                         cell.classList.add("bg-info");
                     }

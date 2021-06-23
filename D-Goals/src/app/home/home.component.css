@@ -1,0 +1,18 @@
+.container{
+    display:flex;
+    flex-direction: row;
+}
+#actividades{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding:10%;
+    margin:5%;
+}
+.actividades{
+    margin:5%;
+}
+.calendario{
+    margin:5%;
+}
