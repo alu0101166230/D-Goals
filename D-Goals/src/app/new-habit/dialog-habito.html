@@ -1,0 +1,23 @@
+
+<div mat-dialog-content>
+  <p>Selecciona los días y la hora a la que realizarás esta actividad</p>
+  <mat-form-field>
+    <mat-label>Días</mat-label>
+    <mat-checkbox name="active" class="check" ngModel required >Lunes</mat-checkbox>
+    <mat-checkbox name="active" class="check" ngModel required >Martes</mat-checkbox>
+    <mat-checkbox name="active" class="check" ngModel required >Miércoles</mat-checkbox>
+    <mat-checkbox name="active" class="check" ngModel required >Jueves</mat-checkbox>
+    <mat-checkbox name="active" class="check" ngModel required >Viernes</mat-checkbox>
+    <mat-checkbox name="active" class="check" ngModel required >Sábado</mat-checkbox>
+    <mat-checkbox name="active" class="check" ngModel required >Domingo</mat-checkbox>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="time" id="start" placeholder="Hora de Inicio">
+    <input matInput type="time" id="stop" placeholder="Hora de Fin">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="guardarHabito()" >Ok</button>
+</div>

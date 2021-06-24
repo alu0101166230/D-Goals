@@ -10,6 +10,10 @@ export class NavBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const cuenta = JSON.parse(window.localStorage.getItem("currentUser"));
+    if(cuenta["username"]){
+    document.getElementById("Perfil").textContent= "¡Hola "+cuenta["username"]+"!";
+  }
   }
 
 }

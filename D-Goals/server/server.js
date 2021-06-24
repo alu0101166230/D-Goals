@@ -114,7 +114,9 @@ app.post("/singin",(req,res)=>{
   // Escribimos en la Base de datos el nuevo perfil
   newUser.save().then((listDoc)=>{
     res.send(listDoc);
-  })
+  }).catch((e)=>{
+    res.status(400).send(e);
+  });
 })
 
 // app.patch('/lists/:listId/tasks/:tasId',(req,res)=>{

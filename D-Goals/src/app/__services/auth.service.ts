@@ -1,6 +1,7 @@
 import { Injectable,Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, pipe } from 'rxjs';
+import {Router} from "@angular/router";
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../__models/user';
@@ -33,10 +34,16 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    return this.http.post<any>(`http://10.6.130.59:8081/singin`,data,httpOptions).subscribe(data =>{
-        console.log(data);
+    return this.http.post(`http://10.6.130.59:8081/singin`,data,httpOptions).subscribe(data =>{
+      let datos:any = data;  
+      
+      let resultado = new User(datos["nombre"],datos["password"],datos["correo"],datos["_id"]);
+      localStorage.setItem('currentUser',JSON.stringify(resultado));
+      this.currentUserSubject.next(resultado);
+
     }, error => {
-        console.log(JSON.stringify(error.json()));
+      $('#error').addClass("show");
+      $('#error').removeClass("ocultar");
     });
   }
 
@@ -68,6 +75,7 @@ export class AuthService {
       
     }, error => {
         console.log(JSON.stringify(error.json()));
+        return 0;
     });
   }
 

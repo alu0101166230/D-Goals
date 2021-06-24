@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { User } from './__models/user';
@@ -45,7 +46,8 @@ import { CalendarioComponent } from './calendario/calendario.component';
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   bootstrap: [AppComponent],
   providers: [

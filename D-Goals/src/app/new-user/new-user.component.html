@@ -1,32 +1,19 @@
-<div>
-    <h1>Bienvenido nuevo usuario!</h1>
-    <p>Mensaje de bienvenida </p>
-</div>
 
-<div>
-  <h1>Lista de habitos</h1>
-  
-  <div class="container" >
-    <div class="row" id="grid-contenido">
-      
-      <div class="col col-lg-4" style="background-color: red;" id="grid-izquierdo"></div>
-      <div class="col-md-3 " style="background-color: blue;">
-        espacio 
-      </div>
-      <div class="col col-lg-4" style="background-color: green;" id="grid-derecho"></div>
+<div class="container">
+  <h1>Lista de habitos</h1>  
+    <div id="contenido">
     </div>
-  </div>
-
 </div>
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal " id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog" style="max-width: 50%;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title " id="exampleModalLabel"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" mat-icon-button class="btn-close" data-dismiss="modal" aria-label="Close"><mat-icon>close</mat-icon></button>
+
       </div>
 
 
@@ -107,8 +94,8 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="guardar" (click)="guardarHabito($event)"data-bs-dismiss="modal">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="guardar" (click)="guardarHabito($event)"data-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,25 @@
+.container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#actividades{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#bhabit{
+    background-color:#ffd3b4 ;
+    color: black;
+    border: 0px;
+    margin-top: 5%; 
+}
+h1{
+    background-color:#fff6be;
+    border-radius: 15px;
+    padding:5%;
+    margin:auto;
+    width:max-content;
+}
