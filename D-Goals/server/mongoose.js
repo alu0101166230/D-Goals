@@ -5,7 +5,7 @@ const opciones = {useNewUrlParser:true,
                   useUnifiedTopology: true};
 
 mongoose.Promise = global.Promise; 
-mongoose.connect ('mongodb://10.6.129.31:8082/app_user',opciones).then(()=>{
+mongoose.connect ('mongodb://172.16.125.2:8082/app_user',opciones).then(()=>{
   console.log("Conexion a la base de dato correcta");
 
 }).catch((e)=>{

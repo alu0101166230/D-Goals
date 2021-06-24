@@ -119,18 +119,6 @@ app.post("/singin",(req,res)=>{
   });
 })
 
-// app.patch('/lists/:listId/tasks/:tasId',(req,res)=>{
-//   Task.findOneAndUpdate({
-//     _id:req.params.taskId,
-//     _listId:req.params.listId
-//   },{
-//     $set:req.body
-//   }).then(()=>{
-//     res.sendStatus(200);
-//   })
-// });
-
-
 ///////////////////////// Habitos /////////////////
 app.delete("/habit",(req,res)=>{
   Habito.findOneAndRemove({
