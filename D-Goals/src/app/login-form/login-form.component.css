@@ -11,6 +11,7 @@ mat-card-actions{
     display:flex;
     flex-direction: row;
 }
+
 #blogin{
     background-color:#ffd3b4 ;
     color: black;
@@ -46,4 +47,5 @@ a{
 }
 input:checked{
     box-shadow: none;
+    border:0px;
 }

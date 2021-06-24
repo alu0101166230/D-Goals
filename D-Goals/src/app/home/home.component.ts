@@ -9,24 +9,26 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private Perfil : any;
+  public Perfil : any;
   
   constructor(private http: HttpClient,private router: Router) { 
     this.Perfil= new Object;
- 
+    this.router.navigate(["/lo"]);
+
   }
   
   ngOnInit(): void {
     var tmp =  window.localStorage.getItem("currentUser")
-    
+    console.log(tmp);
     if(tmp){
       var perfil = JSON.parse(tmp);
       let username = perfil["username"].toString();
       let password = perfil["password"].toString();
       this.getPerfil(username,password);
     }
-    
-
+    else if(tmp==null || tmp=='{"username":"","password":"","email":"","token":""}'){
+      this.router.navigate(["/login"]);
+    }
   }
   getPerfil(username:string,password:string){
     let data =JSON.stringify({
@@ -42,7 +44,6 @@ export class HomeComponent implements OnInit {
         Object.keys(this.Perfil).forEach(key => {
           // Dias es array de string
           let dias =this.Perfil[key]["dias"];
-
           // today es tipo Number
           var today = new Date().getDay();
           if(dias.includes(this.number_to_day(today))){
@@ -51,22 +52,23 @@ export class HomeComponent implements OnInit {
             var nombre = document.createElement("div");
             var inicio = document.createElement("div");
             var fin = document.createElement("div");
-            var hecho = document.createElement("mat-icon");
-            var no_hecho = document.createElement("mat-icon");
+            var hecho = document.createElement("button");
+            var no_hecho = document.createElement("button");
             var tiempo = document.createElement("div");
             var botones = document.createElement("div");
             var guion = document.createElement("p");
             tiempo.classList.add("tiempo");
-            guion.textContent="-";
+            guion.textContent=" - ";
             botones.classList.add("Botones");
             cuadro.classList.add("Cuadrado");
+            nombre.classList.add("nombre");
             hecho.classList.add("done");
             no_hecho.classList.add("fail");
             nombre.textContent = key;
             inicio.textContent = this.Perfil[key]["horario"][0];
             fin.textContent = this.Perfil[key]["horario"][1];
-            hecho.textContent = "V";
-            no_hecho.textContent = "X";
+            hecho.textContent = "✓";
+            no_hecho.textContent = "x";
             hecho.addEventListener('click',()=>{
               this.tarea_cumplida(nombre,inicio,fin,cuadro);
             });
@@ -83,7 +85,6 @@ export class HomeComponent implements OnInit {
             cuadro.appendChild(botones); 
             actividades.appendChild(cuadro);
           }
-
       })
       }
       else{

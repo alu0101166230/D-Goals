@@ -35,12 +35,12 @@ export class AuthService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
     return this.http.post(`http://10.6.130.59:8081/singin`,data,httpOptions).subscribe(data =>{
+      let datos:any = data;  
       
-      let datos = data;
       let resultado = new User(datos["nombre"],datos["password"],datos["correo"],datos["_id"]);
       localStorage.setItem('currentUser',JSON.stringify(resultado));
       this.currentUserSubject.next(resultado);
-      
+
     }, error => {
       $('#error').addClass("show");
       $('#error').removeClass("ocultar");

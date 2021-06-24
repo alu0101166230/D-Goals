@@ -1,18 +1,25 @@
 .container{
     display:flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 #actividades{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
-    padding:10%;
-    margin:5%;
+    align-items: center;
 }
-.actividades{
-    margin:5%;
+#bhabit{
+    background-color:#ffd3b4 ;
+    color: black;
+    border: 0px;
+    margin-top: 5%; 
 }
-.calendario{
-    margin:5%;
+h1{
+    background-color:#fff6be;
+    border-radius: 15px;
+    padding:5%;
+    margin:auto;
+    width:max-content;
 }

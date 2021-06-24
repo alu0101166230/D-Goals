@@ -1,1 +1,17 @@
-.titulo{}
+.container{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+}
+#contenido{
+    display:flex;
+    flex-direction: row; 
+}
+
+h1{
+    background-color: #fff6be;
+    border-radius: 15px;
+    padding:1%;
+    margin:auto;
+    width:max-content;
+}
