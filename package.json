@@ -51,6 +51,7 @@
   },
   "name": "d-goals",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "ng build",
     "e2e": "ng e2e",

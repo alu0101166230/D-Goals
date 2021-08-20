@@ -1,5 +1,6 @@
-import "mocha";
-import { expect } from "chai";
+import * as mocha from "mocha";
+var expect = require('expect');
+// import { expect } from "chai";
 import { add } from "../src/mocha-test-example";
 
 describe("add function tests", () => {
