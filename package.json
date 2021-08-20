@@ -58,7 +58,7 @@
     "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "test": "jshint hello.js"
+    "test": "mocha"
   },
   "version": "0.0.0"
 }
