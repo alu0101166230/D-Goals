@@ -60,7 +60,8 @@
     "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "nyc npm test"
   },
   "version": "0.0.0"
 }
