@@ -7,3 +7,4 @@ before_script:
 - "cd D-Goals"
 script:
 - "npm test"
+- "npm build"
