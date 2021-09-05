@@ -1,9 +1,7 @@
 language: node_js
-before_script:
- - "cd D-Goals"
 node_js:
  - "node"
 install:
-- "npm install"
+- "npm install --prefix ./D-Goals"
 script:
 - "npm test"
