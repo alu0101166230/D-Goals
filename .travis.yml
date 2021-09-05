@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+ - "node"
+install:
+- "npm install --prefix ./D-Goals"
+before_script: 
+- "cd D-Goals"
+script:
+- "npm test"
+- "ng build"
