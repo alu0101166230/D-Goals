@@ -1,4 +1,5 @@
 D-Goals/node_modules
 node_modules
 dist
-coverage
+coverage/lcov/lcov-report/
+.nyc_output/

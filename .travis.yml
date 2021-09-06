@@ -4,5 +4,6 @@ node_js:
 install:
 - "npm install"
 script:
-- "npm run test_mocha"
 - "ng build"
+- "npm run test-ci"
+- "npm run coverage"
