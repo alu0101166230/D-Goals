@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 });
 
 // Login de la aplicacion
-app.post("api/login",(req,res)=>{
+app.post("/api/login",(req,res)=>{
   // guardamos los parametros de usuario y password
   let user = req.body.user;
   let pass = req.body.password;
@@ -43,7 +43,7 @@ app.post("api/login",(req,res)=>{
   });
 });
 
-app.post("api/update_usuario",(req,res)=>{
+app.post("/api/update_usuario",(req,res)=>{
     let user = req.body.user;
     let cambio = req.body.cambio;
     let valor = req.body.valor;
