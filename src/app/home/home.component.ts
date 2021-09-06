@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
     
-    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+    return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       this.Perfil= data[0]["habito"];
       if(this.Perfil["vacio"]!=true){
         Object.keys(this.Perfil).forEach(key => {
@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+    return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       var habito = data[0]["habito"][tarea.textContent]
       habito["horas"]+=tiempo_total;
       // console.log(data[0]["habito"]);
@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
         cambio: "habito",
         valor:data[0]["habito"]
       });
-      this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
 
       data[0]["numero_de_horas_totales"]+=tiempo_total;
       datos =JSON.stringify({
@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
         cambio: "numero_de_horas_totales",
         valor:data[0]["numero_de_horas_totales"]
       });
-      this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
 
       data[0]["tareas_cumplidas"]+=1;
       datos =JSON.stringify({
@@ -155,7 +155,7 @@ export class HomeComponent implements OnInit {
         cambio: "tareas_cumplidas",
         valor:data[0]["tareas_cumplidas"]
       });
-      this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
       
       data[0]["racha"]+=1;
       datos =JSON.stringify({
@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
         cambio: "racha",
         valor:data[0]["racha"]
       });
-      this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
       
     }, error => {
         console.log(JSON.stringify(error.json()));
@@ -181,7 +181,7 @@ export class HomeComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+    return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       var racha_broken = 0
       
       let datos =JSON.stringify({
@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
         cambio: "racha",
         valor:racha_broken
       });
-      this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
 
     }, error => {
         console.log(JSON.stringify(error.json()));

@@ -18,7 +18,7 @@ export class NewHabitComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    this.http.get<any>(`http://10.6.130.59:8081/habit`,httpOptions).subscribe(data =>{
+    this.http.get<any>(`api/habit`,httpOptions).subscribe(data =>{
       for(var x=0; x< data.length; x++){
           var container = document.createElement("div");
           container.classList.add("tarjeta");
@@ -74,7 +74,7 @@ export class NewHabitComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
       
-    this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+    this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       
       if(data[0]["habito"][nombre_habito]){
         var habito = data[0]["habito"][nombre_habito]
@@ -85,7 +85,7 @@ export class NewHabitComponent implements OnInit {
           cambio: "habito",
           valor:data[0]["habito"] 
         });
-        this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
       }
       else{
         var habito = data[0]["habito"];
@@ -99,7 +99,7 @@ export class NewHabitComponent implements OnInit {
           cambio: "habito",
           valor:data[0]["habito"] 
         });
-        this.http.post<any>(`http://10.6.130.59:8081/update_usuario`,datos,httpOptions).subscribe(data =>{});
+        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
       }
       
     }, error => {
