@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   
   constructor(private http: HttpClient,private router: Router) { 
     this.Perfil= new Object;
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/home"]);
 
   }
   
