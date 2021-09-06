@@ -20,6 +20,6 @@ describe('LoginFormComponent', () => {
   });
 
   it('should create', () => {
-    expect(2+2).toBeTruthy(4);
+    expect(2+2).toEqual(4);
   });
 });
