@@ -9,8 +9,7 @@
     "test mocha": "mocha",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "lite": "lite-server",
-    "postinstall": "ng build --prod"
+    "lite": "lite-server"
   },
   "private": true,
   "dependencies": {
