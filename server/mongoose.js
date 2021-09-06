@@ -1,12 +1,10 @@
 const mongoose = require ('mongoose');
-const opciones = {useNewUrlParser:true,
-                  user:"user",
-                  pass:"usuario1",
-                  useUnifiedTopology: true};
+
 
 mongoose.Promise = global.Promise; 
-mongoose.connect ('mongodb://172.16.125.2:8082/app_user',opciones).then(()=>{
-  console.log("Conexion a la base de dato correcta");
+const mongodb_url = process.env.MONGODB_URL 
+mongoose.connect (mongodb_url).then(()=>{
+  console.log("Conexion a la base de datos correcta");
 
 }).catch((e)=>{
     console.log("Error al conectar con la base de datos");

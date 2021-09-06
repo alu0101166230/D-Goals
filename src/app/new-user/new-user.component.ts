@@ -20,7 +20,7 @@ export class NewUserComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    this.http.get<any>(`http://10.6.130.59:8081/habit`,httpOptions).subscribe(data =>{
+    this.http.get<any>(`api/habit`,httpOptions).subscribe(data =>{
       console.log(data);
       for(var x=0; x< data.length; x++){
           var container = document.createElement("div");
@@ -93,7 +93,7 @@ export class NewUserComponent implements OnInit {
     const httpOptions = {
        headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
     
-     return this.http.post<any>(`http://10.6.130.59:8081/usuario`,data,httpOptions).subscribe(data =>{
+     return this.http.post<any>(`api/usuario`,data,httpOptions).subscribe(data =>{
        this.router.navigate(["/home"]);  
       return data;
      })

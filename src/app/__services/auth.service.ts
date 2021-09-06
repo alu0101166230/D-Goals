@@ -34,7 +34,7 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    return this.http.post(`http://10.6.130.59:8081/singin`,data,httpOptions).subscribe(data =>{
+    return this.http.post(`api/singin`,data,httpOptions).subscribe(data =>{
       let datos:any = data;  
       
       let resultado = new User(datos["nombre"],datos["password"],datos["correo"],datos["_id"]);
@@ -58,7 +58,7 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
-    return this.http.post<any>(`http://10.6.130.59:8081/login`,data,httpOptions).subscribe(data =>{
+    return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       // console.log(data[0]);
       if(data[0]){
         let datos = data[0];

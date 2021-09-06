@@ -1,6 +1,7 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
 const app = express();
+const path = require('path')
 app.use(bodyParser.json());
 
 
@@ -31,7 +32,7 @@ app.use(function (req, res, next) {
 });
 
 // Login de la aplicacion
-app.post("/login",(req,res)=>{
+app.post("/api/login",(req,res)=>{
   // guardamos los parametros de usuario y password
   let user = req.body.user;
   let pass = req.body.password;
@@ -43,7 +44,7 @@ app.post("/login",(req,res)=>{
   });
 });
 
-app.post("/update_usuario",(req,res)=>{
+app.post("/api/update_usuario",(req,res)=>{
     let user = req.body.user;
     let cambio = req.body.cambio;
     let valor = req.body.valor;
@@ -51,10 +52,6 @@ app.post("/update_usuario",(req,res)=>{
         [cambio]:valor,
 	nombre:user
     }}
-	console.log(user);
-	console.log(cambio);
-	console.log(valor);
-	console.log(query);
     Usuario.find({nombre:user}).then((lists)=>{
     res.send(lists);
     let cuenta = lists[0][cambio];
@@ -70,7 +67,7 @@ app.post("/update_usuario",(req,res)=>{
   });
 
 })
-app.post("/usuario",(req,res)=>{
+app.post("/api/usuario",(req,res)=>{
   let user = req.body.user;
   let nombre_habito = req.body.habit["nombre"];
   let habit = { $set: {
@@ -100,7 +97,7 @@ app.post("/usuario",(req,res)=>{
 
 });
 
-app.post("/singin",(req,res)=>{
+app.post("/api/singin",(req,res)=>{
   // Creamos el objeto de perfil nuevo, conforme a la informacion proporcionada por el formulario html 
   let newUser = new Usuario({
     nombre : req.body.user,
@@ -118,17 +115,22 @@ app.post("/singin",(req,res)=>{
     res.status(400).send(e);
   });
 })
-
+app.delete("/api/usuario",(req,res)=>{
+  Usuario.findOneAndRemove({
+    nombre: req.body.name
+  }).then((removed)=>{
+    res.send(removed);
+  })
+})
 ///////////////////////// Habitos /////////////////
-app.delete("/habit",(req,res)=>{
+app.delete("/api/habit",(req,res)=>{
   Habito.findOneAndRemove({
     nombre: req.body.name
   }).then((removed)=>{
     res.send(removed);
   })
-
 })
-app.post("/habit",(req,res)=>{
+app.post("/api/habit",(req,res)=>{
   let newHabit = new Habito({
     nombre : req.body.name,
     descripcion: req.body.description
@@ -144,11 +146,11 @@ app.post("/habit",(req,res)=>{
 
 // Peticion GET para obtener los habitos 
 
-app.get("/habit",(req,res)=>{
+app.get("/api/habit",(req,res)=>{
   Habito.find().then((lists)=>{
     console.log("entro")
     res.statusCode ='200';
-    res.statusMessage = 'Solicitod realizada con exito';
+    res.statusMessage = 'Solicitud realizada con exito';
     res.send(lists);
     
     console.log(lists);
@@ -158,7 +160,15 @@ app.get("/habit",(req,res)=>{
   });
 })
 
+// Serve static files
+app.use(express.static(__dirname + '/../dist/D-Goals'));
 
-app.listen('8081','0.0.0.0',()=>{
-  console.log("El servidor esta corriendo en el puerto 8081");
-})
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../dist/D-Goals/index.html'));
+});
+
+// default Heroku port
+app.listen(process.env.PORT || 8080);
+
+

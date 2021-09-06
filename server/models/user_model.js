@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { TypedRule } = require('tslint/lib/rules');
 
 const ListSchema = new mongoose.Schema({
   nombre:{
