@@ -1,10 +1,11 @@
 name: Sonar-Cloud
+
 on:
   push:
-    branches:
-      - main 
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
+
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -18,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 15.x
-      - name: Installing dependencies
+      - name: Dependencies dependencies
         run: npm install
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
