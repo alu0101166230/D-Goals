@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     
     return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       this.Perfil= data[0]["habito"];
-      if(this.Perfil["vacio"]!=true){
+      if(this.Perfil["vacio"]){
         Object.keys(this.Perfil).forEach(key => {
           // Dias es array de string
           let dias =this.Perfil[key]["dias"];
@@ -108,7 +108,6 @@ export class HomeComponent implements OnInit {
     tarea.parentNode.parentNode.removeChild(elemento)
     var tiempo_i = inicio.textContent;
     var tiempo_f = fin.textContent;
-    // console.log(tiempo_i.substring(3,5));
     var tmp_i = Number(tiempo_i.substring(0,2));
     var tmp_f = Number(tiempo_f.substring(0,2));
 
@@ -119,7 +118,6 @@ export class HomeComponent implements OnInit {
 
     var decimas  = Math.abs((tmp_f - tmp_i)/60);
     tiempo_total= tiempo_total+decimas;
-    // console.log(tiempo_total);
 
     const cuenta = JSON.parse(window.localStorage.getItem("currentUser"));
     let data =JSON.stringify({
@@ -132,14 +130,14 @@ export class HomeComponent implements OnInit {
     return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       var habito = data[0]["habito"][tarea.textContent]
       habito["horas"]+=tiempo_total;
-      // console.log(data[0]["habito"]);
+  
 
       let datos =JSON.stringify({
         user: cuenta["username"],
         cambio: "habito",
         valor:data[0]["habito"]
       });
-      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
 
       data[0]["numero_de_horas_totales"]+=tiempo_total;
       datos =JSON.stringify({
@@ -147,7 +145,7 @@ export class HomeComponent implements OnInit {
         cambio: "numero_de_horas_totales",
         valor:data[0]["numero_de_horas_totales"]
       });
-      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
 
       data[0]["tareas_cumplidas"]+=1;
       datos =JSON.stringify({
@@ -155,7 +153,7 @@ export class HomeComponent implements OnInit {
         cambio: "tareas_cumplidas",
         valor:data[0]["tareas_cumplidas"]
       });
-      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
       
       data[0]["racha"]+=1;
       datos =JSON.stringify({
@@ -163,7 +161,7 @@ export class HomeComponent implements OnInit {
         cambio: "racha",
         valor:data[0]["racha"]
       });
-      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
       
     }, error => {
         console.log(JSON.stringify(error.json()));
@@ -189,7 +187,7 @@ export class HomeComponent implements OnInit {
         cambio: "racha",
         valor:racha_broken
       });
-      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
+      this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
 
     }, error => {
         console.log(JSON.stringify(error.json()));

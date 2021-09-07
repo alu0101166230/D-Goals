@@ -1,9 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { User } from '../__models/user';
 import {AuthService} from '../__services/auth.service'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
-import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import * as $ from "jquery";
 
@@ -22,7 +21,7 @@ export class LoginFormComponent implements OnInit {
     $('#error').addClass("ocultar")
   }
   
-  //model = new User("Carol","1234567123",'','');
+
   model = new User('','','','');
   autenticacion = new AuthService(this.http);
   submitted = false;

@@ -1,10 +1,8 @@
-import { Injectable,Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, pipe } from 'rxjs';
-import {Router} from "@angular/router";
-import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../__models/user';
+import {Router} from "@angular/router";
 import * as $ from "jquery";
 @Injectable({ providedIn: 'root' })
 
@@ -59,7 +57,6 @@ export class AuthService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
 
     return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
-      // console.log(data[0]);
       if(data[0]){
         let datos = data[0];
         let resultado = new User(datos["nombre"],datos["password"],datos["correo"],datos["_id"]);
@@ -82,7 +79,6 @@ export class AuthService {
   // Elimina la cuenta del usuario <aka cookie>
   logout(){
     localStorage.removeItem('currentUser');
-    // this.currentUserSubject.next();
   }
   current_user(){
 

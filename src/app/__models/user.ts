@@ -18,10 +18,4 @@ export class User {
         });
     }
     
-    // public static jsonToObject( data:JSON){
-
-    //     let variable = new User(data[nombre],data[password],data[email],data[_id]);
-    //     return variable;
-    // }
-    
 }
