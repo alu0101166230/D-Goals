@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     
     return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       this.Perfil= data[0]["habito"];
-      if(!this.Perfil["vacio"]){
+      if(this.Perfil["vacio"]!=true){
         Object.keys(this.Perfil).forEach(key => {
           // Dias es array de string
           let dias =this.Perfil[key]["dias"];
@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
     tarea.parentNode.parentNode.removeChild(elemento)
     var tiempo_i = inicio.textContent;
     var tiempo_f = fin.textContent;
-
+    // console.log(tiempo_i.substring(3,5));
     var tmp_i = Number(tiempo_i.substring(0,2));
     var tmp_f = Number(tiempo_f.substring(0,2));
 
@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit {
 
     var decimas  = Math.abs((tmp_f - tmp_i)/60);
     tiempo_total= tiempo_total+decimas;
-
+    // console.log(tiempo_total);
 
     const cuenta = JSON.parse(window.localStorage.getItem("currentUser"));
     let data =JSON.stringify({
@@ -130,7 +130,7 @@ export class HomeComponent implements OnInit {
     return this.http.post<any>(`api/login`,data,httpOptions).subscribe(data =>{
       var habito = data[0]["habito"][tarea.textContent]
       habito["horas"]+=tiempo_total;
-
+      // console.log(data[0]["habito"]);
 
       let datos =JSON.stringify({
         user: cuenta["username"],
