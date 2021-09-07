@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
 import { Modal } from 'bootstrap';
@@ -55,7 +55,7 @@ export class NewUserComponent implements OnInit {
           container.appendChild(div_descripcion);
           contenedor.appendChild(container);
         container.addEventListener("click",this.seleccion,false);
-      }
+      };
       return data;
     })
   }
