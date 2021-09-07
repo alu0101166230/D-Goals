@@ -44,7 +44,7 @@ export class NewHabitComponent implements OnInit {
           container.appendChild(div_descripcion);
           contenedor.appendChild(container);
         container.addEventListener("click",this.seleccion,false);
-      }
+      };
       return data;
     })
   }
@@ -58,13 +58,13 @@ export class NewHabitComponent implements OnInit {
     horario.push(hora_fin);
     for (let i = 0; i < dias.length; i++) {
       var dia=dias[i] as HTMLInputElement;
-      if(dia.checked){
+      if(dia.checked ==true){
         rango_dias.push(dias[i].id);
       }
     }
     let nombre_habito = document.getElementById("exampleModalLabel")?.textContent;
 
-    // agregar nueva tarea a la cuenta , hay que modificarla
+    ////////// agregar nueva tarea a la cuenta , hay que modificarla
     let perfil =JSON.parse( window.localStorage.getItem("currentUser")); 
     let data =JSON.stringify({
       user: perfil["username"],
@@ -84,10 +84,10 @@ export class NewHabitComponent implements OnInit {
           cambio: "habito",
           valor:data[0]["habito"] 
         });
-        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data=>{});
+        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
       }
       else{
-        habito = data[0]["habito"];
+        var habito = data[0]["habito"];
         habito[nombre_habito] = {
           "dias":rango_dias,
           "horario":horario,
@@ -98,7 +98,7 @@ export class NewHabitComponent implements OnInit {
           cambio: "habito",
           valor:data[0]["habito"] 
         });
-        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data=>{});
+        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data =>{});
       }
       
     }, error => {
