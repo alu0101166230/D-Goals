@@ -84,7 +84,7 @@ export class NewHabitComponent implements OnInit {
           cambio: "habito",
           valor:data[0]["habito"] 
         });
-        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
+        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data=>{});
       }
       else{
         habito = data[0]["habito"];
@@ -98,7 +98,7 @@ export class NewHabitComponent implements OnInit {
           cambio: "habito",
           valor:data[0]["habito"] 
         });
-        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data);
+        this.http.post<any>(`api/update_usuario`,datos,httpOptions).subscribe(data=>{});
       }
       
     }, error => {
