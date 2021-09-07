@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() {}
+  constructor() {
+    //Es intencional
+  }
 
   ngOnInit(): void {
     const cuenta = JSON.parse(window.localStorage.getItem("currentUser"));

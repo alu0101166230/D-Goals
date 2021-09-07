@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarioComponent implements OnInit {
 
-  constructor() {}
+  constructor() {
+      //Es intencional
+  }
 
   ngOnInit(): void {
 
