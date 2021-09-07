@@ -30,9 +30,9 @@ export class NavBarComponent implements OnInit {
 
   logout(){
     window.localStorage.removeItem('currentUser');
-    this.router.navigate(["/login"]);
     var div = document.getElementById("logout");
     div.removeChild(div.children[0])
+    this.router.navigate(["/login"]);
 
   }
 }
