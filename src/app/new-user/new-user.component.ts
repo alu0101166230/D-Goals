@@ -15,6 +15,7 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit(): void {
     const contenedor = document.getElementById("contenido");
+    // tituloBienvenida.innerHTML = window.localStorage.getItem("username");
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
@@ -70,7 +71,7 @@ export class NewUserComponent implements OnInit {
      horario.push(hora_fin);
      for (let i = 0; i < dias.length; i++) {
        var dia=dias[i] as HTMLInputElement;
-      if(dia.checked){
+      if(dia.checked ==true){
          rango_dias.push(dias[i].id);
        }
      }
