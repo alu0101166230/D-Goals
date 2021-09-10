@@ -3,6 +3,7 @@
 [Enlace a la documentación](https://github.com/alu0101166230/D-Goals/blob/main/Doc%20D-Goals.pdf)
 ## Aplicación web
 [Enlace a la página](http://10.6.130.241/)
+
 [Enlace a la página desplegada en Heroku](https://dgoals.herokuapp.com/login)
 ## Servidor 
 [Enlace al código del servidor](https://github.com/alu0101166230/D-Goals/tree/main/server)
